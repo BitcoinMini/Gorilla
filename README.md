@@ -1,19 +1,19 @@
-#GUERILLA UI
+#GORILLA
 An Asimos OS based Graphic User Interface.
 
-Guerilla was originally designed for use on the Bitcoin Mini and built on Node.js but should work with any Linux/Bitcoind/Nodejs setup.  However no support is implied in making this code available. It has been extensively tested on a Raspberry Pi 2+ running Arch Linux, Bitcoind, and node.js. Browser support is limited to modern browsers with javascript enabled. It uses Angular.js and the jquery/bootstrap combo. The whole packaged product is available at [BitcoinMini.com](https://bitcoinmini.com/).
+Gorilla was originally designed for use on the Bitcoin Mini and built on Node.js but should work with any Linux/Bitcoind/Nodejs setup.  However no support is implied in making this code available. It has been extensively tested on a Raspberry Pi 2+ running Arch Linux, Bitcoind, and node.js. Browser support is limited to modern browsers with javascript enabled. It uses Angular.js and the jquery/bootstrap combo. The whole packaged product is available at [BitcoinMini.com](https://bitcoinmini.com/).
 
 
 ##Install
-`git clone https://example.com/guerilla-ui.git`
+`git clone https://github.com/BitcoinMini/Gorilla.git`
+
+`cd Gorilla`
 
 ###Load the npm dependencies:
 `npm install`
 
 ###Run
-`node bin/asismos`
-or
-`./bin/asimos`
+`node bin/asimos`
 
 
 ##Setup
@@ -25,7 +25,7 @@ You are responsible for understanding the ramifications of opening ports on your
 
 
 ###Externally Installed Packages
-These applications need to be installed on your system for use, and should be installed prior to installing Guerilla.
+These applications need to be installed on your system for use, and should be installed prior to installing Gorilla.
 
     bitcoind & bitcoin-cli
     Nodejs
@@ -40,7 +40,7 @@ All Minis come with [Arch Linux](https://www.archlinux.org/) as it's operating s
 
 
 ###Contributors
-We have bug and development bounties available. If you find a bug, create a pull request or issue. Bounties will be UP TO 0.1 btc for now based on how big it is, and we will increase that as we can. A list of wanted development & bounties will soon be available on our subreddit r/bitcoinmini. 
+We have bug and development bounties available. If you find a bug, create a pull request or issue. Bounties will be UP TO 0.1 btc for now, based on how big it is, and we will increase that as we can. A list of wanted development & bounties will soon be available on our subreddit r/bitcoinmini. 
 
 If you contribute code to this project, you are implicitly allowing your code to be distributed under the MIT license. You are also implicitly verifying that all code is your original work. `</legalese>`
 
@@ -50,8 +50,8 @@ Any other questions please reach out to us here on github, or on reddit. Thank y
 
 
 ##License
-Guerilla is free and open-source software released under the MIT license.
+Gorilla is free and open-source software released under the MIT license.
 
 
 ##Copyright
-Guerilla (c) 2015 Mini Computing, LLC
+Gorilla (c) 2016 Mini Computing, LLC

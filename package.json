@@ -1,18 +1,27 @@
 {
-  "name": "guerilla-ui",
-  "description": "A GUI for a bitcoin full node built on ASIMOS OS",
-  "version": "0.2.0",
+  "name": "gorilla",
+  "description": "A GUI for the Bitcoin Mini full node built on ASIMOS OS",
+  "version": "0.2.1",
   "license": "MIT",
+  "contributors": [{
+	  "name": "Ansel Lindner",
+	  "email": "foo.bar@example.com",
+	  "url": "example.com"
+	},{
+		"name": "Steve Johnson",
+		"email": "steve@internaut.me",
+		"url": "internaut.solutions"
+	}],
   "main": "./index.js",
   "bin": "./bin/asimos.js",
   "preferGlobal": false,
-  "repository": "git://gitlab.com/internaut/guerilla.git",
-  "homepage": "https://gitlab.com/internaut/asimos",
+  "repository": "git:github.com/BitcoinMini/Gorilla.git",
+  "homepage": "https://github.com/BitcoinMini/Gorilla.git",
   "bugs": {
-    "url": "https://gitlab.com/internaut/asimos/issues"
+    "url": "https://github.com/BitcoinMini/Gorilla/issues"
   },
   "keywords": [
-    "asimos",
+    "gorilla",
     "bitcoin",
     "full node",
     "terminal",
@@ -22,7 +31,7 @@
     "javascript"
   ],
   "tags": [
-    "asimos",
+    "gorilla",
     "bitcoin",
     "full node",
     "terminal",
@@ -37,7 +46,7 @@
     "express": ">=4",
     "get-json": "0.0.2",
     "node-qr-image": "0.0.1",
-    "pty.js": "*",
+    "pty.js": "^0.3.0",
     "restify": "^4.0.4",
     "serve-favicon": "^2.3.0",
     "socket.io": "0.9.16",
