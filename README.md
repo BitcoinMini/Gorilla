@@ -28,6 +28,7 @@ You are responsible for understanding the ramifications of opening ports on your
 These applications need to be installed on your system for use, and should be installed prior to installing Gorilla.
 
     bitcoind & bitcoin-cli
+    vnstat
     python2
     Nodejs
     NPM
