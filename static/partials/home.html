@@ -44,12 +44,46 @@
 		   	<div class="home-tile bitcoin-tile">
 		   		<div class="dimmer">
 		   			<div class="inner-tile">
-		   				<h2>NETWORK</h2>
+		   				<h2>INFO</h2>
 		   				<div class="number-box">
-			   				<p class="hlabel">NETWORK PEERS</p>
-							<p class="hnumbers">34</p>
-							<p class="hlabel">MINI PEERS</p>
-							<p class="hnumbers">5</p>
+			   				<p class="hlabel">MINI USERNAME</p>
+							<p class="hnumbers">{{ tileinfo.username }}</p>
+							<p class="hlabel">GORILLA VERSION</p>
+							<p class="hnumbers">{{ tileinfo.gorillaver }}</p>
+						</div>
+		   			</div>
+		   		</div>
+		   
+			</div>
+		</div>
+
+		<div class="col-xs-12 col-md-6" style="margin-bottom:20px;">
+		   	<div class="home-tile functions-tile">
+		   		<div class="dimmer">
+		   			<div class="inner-tile">
+		   				<h2>FUNCTIONS</h2>
+		   				<div class="number-box">
+			   				<p class="hlabel">NEW ADDRESS</p>
+							<a class="btn ghost-btn">AddNew</a>
+							<p class="hlabel">DUMP PRIVATE KEY</p>
+							<a class="btn ghost-btn">DumpPrivKey</a>
+						</div>
+		   			</div>
+		   		</div>
+		   
+			</div>
+		</div>
+
+		<div class="col-xs-12 col-md-6" style="margin-bottom:20px;">
+		   	<div class="home-tile messages-tile">
+		   		<div class="dimmer">
+		   			<div class="inner-tile">
+		   				<h2>MESSAGES</h2>
+		   				<div class="number-box">
+			   				<p class="hlabel">SIGN MESSAGE</p>
+							<a class="btn ghost-btn">Sign</a>
+							<p class="hlabel">VERIFY MESSAGE</p>
+							<a class="btn ghost-btn">Verify</a>
 						</div>
 		   			</div>
 		   		</div>

@@ -60,8 +60,6 @@ angular.module('guerilla').controller(
                 angular.forEach( results, function( result ) {
                     data = data.concat( result.data );
                 });
-                // convert the api string to json
-                //data[2] = JSON.parse(data[2]);
 
                 // The different numbers (ie data[2]) correspond to the different get requests
                 // Now let's set some variables to push info to the DOM

@@ -166,6 +166,16 @@ li {
 .guerilla-checkbox input[type=checkbox]:checked ~ label:after {
   left: 30px;
 }
+.ghost-btn {
+  border-color: #f2f2f2;
+  color: #f2f2f2;
+  margin-top: 3px;
+  margin-bottom: 4px;
+}
+.ghost-btn:hover {
+  border-color: #b2b2b2;
+  color: #b2b2b2;
+}
 @media only screen and (max-width: 480px) {
   #wrapper {
     margin: 0;
@@ -194,6 +204,16 @@ li {
 }
 #home-tiles .bitcoin-tile {
   background-image: url('../img/bitcoin-back.jpg');
+  background-size: cover;
+  z-index: 1;
+}
+#home-tiles .functions-tile {
+  background-image: url('../img/functions.jpg');
+  background-size: cover;
+  z-index: 1;
+}
+#home-tiles .messages-tile {
+  background-image: url('../img/messaging.jpg');
   background-size: cover;
   z-index: 1;
 }
@@ -745,10 +765,10 @@ li.divider {
     font-size: 9.6px;
   }
 }
+/* terminal */
 /**
  * Terminal
  */
-
 .window {
   padding-top: 15px;
   border: #fafafa solid 1px;
@@ -759,16 +779,13 @@ li.divider {
   z-index: 10000;
   box-shadow: rgba(0, 0, 0, 0.8) 2px 2px 20px;
 }
-
 .maximized .window {
   border: none;
   box-shadow: none;
 }
-
 .dark .window {
   box-shadow: none;
 }
-
 .bar {
   position: absolute;
   top: 0;
@@ -779,7 +796,6 @@ li.divider {
   font-family: "DejaVu Sans Mono", "Liberation Mono", monospace;
   color: #fafafa;
 }
-
 .title {
   position: absolute;
   right: 5px;
@@ -787,7 +803,6 @@ li.divider {
   font-size: 11px;
   cursor: default;
 }
-
 .tab {
   font-size: 16px;
   margin-left: 8px;
@@ -795,11 +810,9 @@ li.divider {
   float: left;
   cursor: pointer;
 }
-
 .tab:hover {
   font-weight: bold;
 }
-
 .grip {
   position: absolute;
   bottom: -10px;
@@ -810,10 +823,6 @@ li.divider {
   z-index: -1;
   background: transparent;
 }
-
-.grip:hover {
-}
-
 .terminal {
   border: #000 solid 5px;
   font-family: "DejaVu Sans Mono", "Liberation Mono", monospace;
@@ -821,17 +830,14 @@ li.divider {
   color: #f0f0f0;
   background: #000;
 }
-
 .reverse-video {
   color: #000;
   background: #f0f0f0;
 }
-
-.modal
-{
-    overflow: hidden;
+.modal {
+  overflow: hidden;
 }
-.modal-dialog{
-    margin-right: 0;
-    margin-left: 0;
+.modal-dialog {
+  margin-right: 0;
+  margin-left: 0;
 }

@@ -131,6 +131,16 @@ ul,li {list-style: none; padding-left:0; }
 .guerilla-checkbox input[type=checkbox]:checked ~ label:after {
   left: 30px;
 }
+.ghost-btn {
+	border-color:@light;
+	color:@light;
+	&:hover {
+		border-color: @textExtraLight;
+		color: @textExtraLight;
+	}
+	margin-top:3px;
+	margin-bottom:4px;
+}
 
 @media @mobile {
 	#wrapper { 
@@ -156,4 +166,8 @@ ul,li {list-style: none; padding-left:0; }
 
 /* explorer page */
 @import "explorerPage.less";
+// 
+
+/* terminal */
+@import "terminal.less";
 // 
