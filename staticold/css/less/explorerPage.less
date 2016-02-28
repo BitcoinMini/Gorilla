@@ -1,0 +1,173 @@
+.explorer-title {
+	margin-bottom: 5px;
+	h3 {
+		font-size:@font-xl;
+		
+		i {
+			vertical-align: bottom;
+		}
+		a {
+			margin-top:-10px;
+		}
+	}
+	form {
+		
+		.search { position: relative;width:100%; }
+		.search input { 
+			text-indent: 30px;
+			background:rgba(255,255,255,.3);
+			border:none;
+			width:100%;
+			font-size:@font-sm;
+			padding:10px 5px;
+		}
+		.search i { 
+		    position: absolute;
+		    top: 5px;
+		    left: 7px;
+		    font-size: @font-lg*1.3;
+		    color:@textExtraLight;
+		}
+	}
+	.split {
+		width:49%;display:inline-block;
+	}
+}
+.explorer-container {
+	.explorer-bar {
+		
+		.mar-pad(0 0 10px, 0);
+		line-height: 1.1em;
+
+		h4 {
+			color:@textLight;
+			margin-bottom:20px;
+			font-size:@font-md *1.6;
+		}
+		.elabel {
+			color:@textLight;
+			font-size:@font-sm *.8;
+			margin-bottom:0;
+		}
+		.numbers {
+			color:@light;
+			font-size:@font-md;
+			font-family: 'Play', sans-serif;
+
+		}
+		.numbers.main {
+			font-size:@font-md *1.6;
+			padding-right:10px;
+		}
+		#txn-count {
+			color:@textLight;
+			margin-right: 20px;
+		}
+		.pause-button {
+			background-color:transparent;
+			border-color:@textLight;
+			padding:0 10px;
+			line-height: 1;
+
+			i {
+				color:@textLight;
+			}
+			&:hover {
+				background-color:rgba(0,0,0,.1);
+			}
+		}
+	}
+	
+}
+.explorer-tile {
+	padding:10px;
+	background: @menu;
+	margin-top:10px;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+
+	#transaction-wrapper {
+		width:100%;
+		background:@menuDark;
+		max-height:350px;
+		overflow:hidden;
+	}
+}
+.explorer-tile.last {
+	margin-bottom:10px;
+}
+#live-transactions {
+	color:@textLight;
+	font-size:@font-sm;
+	
+	li {
+		animation:grow .2s;
+	}
+	.txn {
+		width:100%;
+		height:100%;
+		padding:0 5px;
+		margin-bottom:1px;
+		border-radius:4px;
+		border:1px solid @textLight;
+
+		.txn-id, .txn-amount {
+			width:100%;
+			height:auto;
+		}
+		
+	}
+	.transaction-text {
+		color:@textExtraLight;
+	}
+}
+
+
+@keyframes grow {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 42px;
+  }
+}
+
+@media @mobile {
+	.explorer-title {
+		h3 {
+			font-size:@font-md;
+			i {
+				font-size:@font-md;
+			}
+		}
+		.split {
+			width:100%!important;
+		}
+	}
+	
+	.explorer-container {
+		.explorer-bar {
+
+			h4 {
+				font-size:@font-md;
+			}
+			.elabel {
+				font-size:@font-sm *.9;
+			}
+			.numbers {
+				font-size:@font-sm;
+			}
+			.numbers.main {
+				font-size:@font-md;
+			}
+			#txn-count {
+				margin-right: 10px;
+			}
+		}
+		
+	}
+	#live-transactions {
+		font-size:@font-sm *.8;
+		
+	}
+	
+}

@@ -1,0 +1,88 @@
+<div class="explorer-title container-fluid">
+	<div class="split">
+		<h3>
+		<i class="material-icons xlarge">view_module</i>&nbsp;&nbsp;Blockchain Explorer <small><em>via Blockr</em></small>
+		</h3>
+	</div>
+	
+	<div class="split" style="vertical-align:bottom;">
+		<form class="form-inline" ng-submit="transactionLoad()">
+			<div class="search pull-right">
+			    <i class="material-icons">search</i>
+			    <input ng-model="search">
+			</div>
+		</form>
+	</div>
+</div>
+
+<!-- Placeholder for partials -->
+<div id="explorer-wrapper">        
+    <div ui-view></div>
+</div><!-- / wrapper -->
+
+<div class="explorer-container container-fluid">
+
+	<div class="col-xs-12 col-md-6 explorer-bar">
+		<div class="container-fluid">
+			<div class="explorer-tile clearfix">
+				
+				<div class="col-xs-12"><h4>LAST BLOCK<span class="numbers main pull-right">{{ explorer.last_block.nb }}</span></h4></div>
+				
+				<div class="col-xs-6">
+					<p class="elabel">CREATED</p>
+					<p class="numbers">{{ explorer.last_block.time_utc }}</p>
+				</div>
+				<div class="col-xs-6">
+					<p class="elabel">TRANSACTIONS</p>
+					<p class="numbers">{{ explorer.last_block.nb_txs }}</p>
+				</div>
+			</div>
+			<div class="explorer-tile clearfix">
+				<div class="col-xs-12"><h4>NEXT DIFFICULTY<span class="numbers main pull-right">{{ explorer.next_difficulty.difficulty }} bn</span></h4></div>
+
+				<div class="col-xs-6">
+					<p class="elabel">CHANGE <em>est.</em></p>
+					<p class="numbers">{{ explorer.next_difficulty.perc }} %</p>
+				</div>
+				<div class="col-xs-6">
+					<p class="elabel">RETARGET IN</p>
+					<p class="numbers">{{ explorer.next_difficulty.retarget_in }} blocks</p>
+				</div>
+			</div>
+			<div class="explorer-tile clearfix">
+
+				<div class="col-xs-12"><h4>SUPPLY<span class="numbers main pull-right">{{ explorer.volume.current }} <small><em>BTC</em></small></span></h4></div>
+
+				<div class="col-xs-6">
+					<p class="elabel">PERCENT OF TOTAL</p>
+					<p class="numbers">{{ explorer.volume.perc }} %</p>
+				</div>
+				<div class="col-xs-6">
+					<p class="elabel">HARD LIMIT</p>
+					<p class="numbers">{{ explorer.volume.all }}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="col-xs-12 col-md-6 explorer-bar">
+		<div class="container-fluid">
+			<div class="explorer-tile clearfix">
+				
+				<h4>TRANSACTIONS
+				<button ng-show="live" ng-click="pauseTxns()" class="btn pull-right pause-button"><i class="material-icons">pause</i></button>
+				<button ng-show="paused" ng-click="startTxns()" class="btn pull-right pause-button"><i class="material-icons">play_arrow</i></button>
+				<span  id="txn-count" class="pull-right"><small>10 mins: {{ txn }}</small></span>
+				</h4>
+			
+				<div id="transaction-wrapper" class="clearfix">
+					<ul id="live-transactions">
+						
+					</ul>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+			
+</div><!-- /  -->

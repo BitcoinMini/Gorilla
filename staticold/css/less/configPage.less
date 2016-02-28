@@ -1,0 +1,59 @@
+.editing-table {
+
+	label {
+		font-weight: 500;
+		font-size: @font-lg * .7;
+		line-height: 1.5;
+		padding-top:10px;
+	}
+
+	i {
+		font-size: @font-md *1.3;
+		vertical-align: bottom;
+	}
+	.advanced-settings {
+
+		a {
+			font-size: @font-md;
+			&:hover {text-decoration: none;color:black;}
+			i {
+				font-size: @font-md *1.2;
+			}
+		}
+	}
+}
+.editing-title {
+	margin-bottom: 5px;
+	h3 {
+		font-size:@font-xl;
+		i {
+			vertical-align: bottom;
+		}
+		a {
+			margin-top:-10px;
+		}
+	}
+	p {
+		font-size:@font-md;
+		padding-top:8px;
+	}
+
+}
+.fullwidth {
+	width:100%;
+}
+
+@media @mobile {
+	.editing-title {
+		h3 {
+			font-size:@font-md;
+			i {
+				font-size:@font-md;
+			}
+		}
+		p {
+			font-size:@font-md *.7;
+		}
+	}
+	
+}

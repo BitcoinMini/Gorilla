@@ -1,0 +1,41 @@
+.ng-pageslide {
+    background: @menu;
+    .mar-pad(0, 15px 0);
+    color:#dbdbdb;
+    font-family:'Play', sans-serif;
+
+    .slider {
+    	width: 100%;
+    	.mar-pad(0,0);
+    }
+
+    a.slide-close {
+    	font-size:@font-lg;
+    	margin-top:-5px;
+    }
+    li.slide-item {
+    	.mar-pad(0, 15px 10px);
+    	width:100%;
+    	height: 60px;
+
+    	&:hover {
+    		background: @menuDark;
+    	}
+
+    	a {
+    		color:@light;
+
+			&:hover,&:visited,&:focus {
+				text-transform: none;
+				text-decoration: none;
+				color:inherit;
+	    	}
+    		i {
+				vertical-align:bottom;
+			}
+    	}
+
+    	
+    }
+
+}

@@ -1,0 +1,93 @@
+#home-tiles {
+	margin-bottom:20px;
+	.home-tile {
+		width:100%;
+		height:200px;
+		box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+		position:relative;
+	}
+	.markets {
+		background-image:url('../img/smartphone_in_hands.jpg');
+		background-size:cover;
+		z-index: 1;
+	}
+	.news {
+		background-image:url('../img/storage.jpg');
+		background-size:cover;
+		z-index: 1;
+	}
+	.bitcoin-tile {
+		background-image:url('../img/bitcoin-back.jpg');
+		background-size:cover;
+		z-index: 1;
+	}
+	.dimmer {
+		height:100%;
+		width:100%;
+		background: rgba(0,0,0,.7);
+		z-index: 3;
+		padding:10px;
+		position:relative;
+
+		.inner-tile {
+			height:100%;
+			width:100%;
+			border:2px solid @textExtraLight;
+			padding:10px;
+			color:@textExtraLight;
+			position:relative;
+
+			h2 { font-size: @font-sm *1.4; font-weight: 500; margin-top:5px; margin-bottom:20px; text-align: right; }
+			p { font-size: @font-sm; font-weight: 300; }
+			.number-box {
+				position:absolute;
+				bottom:0;
+
+				p.hnumbers {
+					font-size: @font-sm *1.4; color:@light; font-family: 'Play', sans-serif;
+				}
+				p.hlabel {
+					margin-bottom:1px;
+				}
+			}
+			
+		}
+	}
+}
+
+#prices-bar {
+	background:#222222;
+	.mar-pad(0 0 20px, 10px);
+
+	.exchange-group {
+		width:100%;
+		height:100%;
+		padding:10px;
+		color:@textExtraLight;
+
+		h4 {
+			font-size: @font-md * 1.1;
+			color:@light;
+		}
+		p {
+			font-size: @font-sm;
+			
+		}
+		.details {
+			text-align: right;
+			.alabel {
+				font-size: @font-sm * .8;
+				margin-bottom:0;
+			}
+			.numbers {
+				margin-bottom:5px;
+			}
+			.numbers.vol {
+				color:@light;
+			}
+		}
+	}
+	.green-text { color:green; }
+	.red-text { color:red; }
+	
+}

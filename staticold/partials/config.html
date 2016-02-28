@@ -1,0 +1,126 @@
+<div class="editing-title container-fluid">
+	<h3>
+		<i class="material-icons xlarge">settings</i>&nbsp;&nbsp;Control Panel
+		<!-- <a class="btn btn-default pull-right"><i class="material-icons">short_text</i>&nbsp;&nbsp;SEE ALL SETTINGS</a> -->
+	</h3>
+	<p>Your control panel has the settings for your Mini and your instance of Bitcoin.</p>
+</div>
+
+<div class="editing-table container-fluid">
+
+	<div class="tile container-fluid">
+		<ul>
+			<li>
+				<form ng-submit="editEmail()">
+					<div class="form-group">
+					    <label for="email" class="col-xs-12">Email&nbsp;&nbsp;
+					    	<span ng-show="saving.email"><img src="public/img/loader.gif" height="14px"/></span>
+					    </label>
+					    <div class="col-xs-8 col-sm-10">
+					    	<input ng-model="edit.email" type="text" name="email" id="email" class="form-control"
+					    	    placeholder="{{config.email.address}}"/>
+					    </div>
+					    <div class="col-xs-4 col-sm-2">
+					    	<button type="submit" class="btn btn-default btn-block"><i class="material-icons">add</i>&nbsp;Save</button>
+					    </div>
+					</div>
+				</form>
+			</li>
+			<li>
+				<form>
+					<div class="form-group">
+						<label class="col-xs-12">Notification Emails
+							<span ng-show="saving.emailNotification"><img src="public/img/loader.gif" height="14px"/></span>
+						</label>
+						<div class="col-xs-12 guerilla-checkbox">
+							<input ng-click="emailNotifications()" ng-checked="notifications.email" id="emailOption" type="checkbox" name="emailOption"/>
+						    <label for="emailOption"></label>
+						</div>
+						<div class="col-xs-12"><p class="help-block" style="margin-top:-10px;">Lets your Mini send you emails.</p></div>
+					</div>
+				</form>
+			</li>
+
+			<li>
+				<form ng-submit="editTimeout()">
+					<div class="form-group">
+						<label for="timeout" class="col-xs-12">Bitcoin API Timeout
+							<span ng-show="saving.timeout"><img src="public/img/loader.gif" height="14px"/></span>
+						</label>
+						<div class="col-xs-8 col-sm-10">
+							<input ng-model="edit.timeout" type="text" name="timeout" id="timeout" class="form-control"
+							    placeholder="{{config.btc.timeout}}"/>
+							    <p class="help-block">If your bitcoin commands are slow, increase this (ms).</p>
+						</div>
+						<div class="col-xs-4 col-sm-2">
+							<button type="submit" class="btn btn-default btn-block"><i class="material-icons">add</i>&nbsp;Save</button>
+						</div>
+					</div>
+				</form>
+			</li>
+		</ul>
+		
+    </div>
+    <div class="tile container-fluid">
+    	<div class="container-fluid advanced-settings">
+		    <a data-toggle="collapse" 
+               data-target="#advancedSettingsDropdown" 
+               aria-expanded="false" 
+               aria-controls="collapseAdvancedSettings">
+               <i class="material-icons" style="vertical-align:middle;">settings_applications</i>&nbsp;&nbsp;Advanced
+            </a>
+        </div>
+		<ul class="collapse" id="advancedSettingsDropdown">
+			<li>
+				<form>
+					<div class="form-group">
+						<label for="email" class="col-xs-12">Gorilla's Port
+							<span ng-show="saving.port"><img src="public/img/loader.gif" height="14px"/></span>
+						</label>
+						<div class="col-xs-8 col-sm-10">
+							<input ng-model="edit.port" type="text" name="port" id="port" class="form-control"
+								placeholder="{{config.system.PORT}}"/>
+								<p class="help-block">Change your Mini's port (ie :xxxx in the address bar)</p>
+						</div>
+						<div class="col-xs-4 col-sm-2">
+							<button type="submit" ng-submit="editPassword()" class="btn btn-default btn-block"><i class="material-icons">add</i>&nbsp;&nbsp;Save</button>
+						</div>
+					</div>
+				</form>
+			</li>
+			<li>
+				<form>
+					<div class="form-group">
+						<label for="username" class="col-xs-12">Bitcoind API Username
+							<span ng-show="saving.btcuser"><img src="public/img/loader.gif" height="14px"/></span>
+						</label>
+						<div class="col-xs-8 col-sm-10">
+							<input ng-model="edit.username" type="text" name="username" id="username" class="form-control"
+							    placeholder="{{config.btc.user}}"/>
+						</div>
+						<div class="col-xs-4 col-sm-2">
+							<button type="submit" ng-submit="editUsername()" class="btn btn-default btn-block"><i class="material-icons">add</i>&nbsp;&nbsp;Save</button>
+						</div>
+					</div>
+				</form>
+			</li>
+			<li>
+				<form>
+					<div class="form-group">
+						<label for="password" class="col-xs-12">Bitcoind API Password
+							<span ng-show="saving.btcpass"><img src="public/img/loader.gif" height="14px"/></span>
+						</label>
+						<div class="col-xs-8 col-sm-10">
+							<input ng-model="edit.password" type="text" name="password" id="password" class="form-control"
+							    placeholder="{{config.btc.pass}}"/>
+						</div>
+						<div class="col-xs-4 col-sm-2">
+							<button type="submit" ng-submit="editPassword()" class="btn btn-default btn-block"><i class="material-icons">add</i>&nbsp;&nbsp;Save</button>
+						</div>
+					</div>
+				</form>
+			</li>
+		</ul>
+	</div><!-- / tile -->
+
+</div><!-- / editing-table -->
