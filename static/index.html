@@ -60,7 +60,7 @@
                     </div>
                 </li>
                 <!-- Info items -->
-                <li class="menu-item left more ghidden"><p>{{ info.ip }}<small>:8334</small></p><h5>External IP</h5></li>
+                <li class="menu-item left more ghidden"><p>{{ info.ip }}</p><h5>External IP</h5></li>
                 <li class="menu-item left more ghidden"><p>{{ info.protocolversion }}</p><h5>Protocol Version</h5></li>
                 <li class="menu-item left more ghidden"><p>{{ info.miniblock }}</p><h5>Block</h5></li>
                 <li class="menu-item left more ghidden"><p>{{ info.difficulty }}</p><h5>Difficulty</h5></li>
@@ -133,6 +133,9 @@
                                             <i class="material-icons orange">code</i>&nbsp;&nbsp;Terminal
                                         </a>
                                     </li>
+                                    <li class="slide-item">
+                                    	<a href="#helpModal" data-backdrop="false" data-toggle="modal"><i class="material-icons orange">help_outline</i>&nbsp;&nbsp;HELP</a>
+                                    </li>
                                     <!--<li class="slide-item">
                                         <a disabled="disabled" style="pointer-events:none;">
                                             <i class="material-icons orange">settings</i>&nbsp;&nbsp;Control Panel (coming soon)
@@ -177,6 +180,32 @@
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
+        <div id="helpModal" class="modal fade dragmod">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                 <h4 class="modal-title">Help</h4>
+
+            </div>
+            <div class="modal-body">
+                <h2>Help</h2>
+                <h3>Terminal</h3>
+				<p>Click the title bar to drag.</p>
+				<p>Double-click title bar to maximize.</p>
+				<p>Click the lower-right corner to resize.</p>
+				<p>Click the tilde to open a new tab. (dots next to tilde)</p>
+				<p>Click the tilde with a modifier (alt/shift/ctrl) or type `exit` to close the window.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+    
+
         
         <!-- System Process div -->
         <div ng-show="systemProcess" 
@@ -218,7 +247,9 @@
     <script src="options.js"></script>
     <script src="tty.js"></script>
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     
+   
 </body>
 </html>

@@ -10,13 +10,14 @@ angular.module('guerilla')
 .controller(
     'homeController', 
     function( $scope, $rootScope, $http, $q ) {
-
+    		$('.btc_but').css("cursor", 'wait');
         /**
          *  Variables
          */
         $scope.tileinfo = [];  // for the menu information
 
         moreStats();
+        
         var loop2 = setInterval( moreStats, 60000 ); // 10 mins
 
         /**
@@ -39,7 +40,6 @@ angular.module('guerilla')
 
                 // create an empty array for the results
                 var data = [];
-
                 // add all results to the array one at a time
                 angular.forEach( results, function( result ) {
                     data = data.concat( result.data );
@@ -57,7 +57,6 @@ angular.module('guerilla')
                 $scope.tileinfo.username = data[2].data;
                 // gorilla version
                 $scope.tileinfo.gorillaver = data[3].data;
-                
             }); // .then()
         } // loader()
 
@@ -172,6 +171,95 @@ angular.module('guerilla')
         // // To close the connection, we don't use this really
         // coinbase.onclose = function() { console.log('Coinbase connection is closed'); }
         /////////////////////////////////////////////////////////////////
-
+        
+      //Make modals draggable
+        $('.dragmod').draggable({handle: '.modal-header'});
+     
+      //BTC Functions
+        function getBTCadds(){
+        	$('#btc_resp').text('LOADING ADDRESSES');
+        	var btcAdds;
+        $.getJSON('http://'+ window.location.hostname +':8081/btc/getadds',function(data){
+        	btcAdds = data;
+        	$.each(btcAdds,function(id,adata){
+        		var tout = '<option value="'+adata['address']+'">'+adata['address'];
+        		var lout = '<li>'+adata['address'];
+        		if(adata['account'] != ""){
+        			tout += ' : '+adata['account'];
+        			lout += ' : '+adata['account'];
+        		}
+        		tout += '</option>';
+        		lout += '</li>';
+        		$('#dumpAdd').append(tout);
+        		$('#signAdd').append(tout);
+        		$('#btc_addList').append(lout);
+        	});
+        	$('#btc_resp').text('');
+        	$('.btc_but').css("cursor", 'pointer');
+        });
+        
+        return btcAdds;
+        }
+        
+        var btcadds = getBTCadds();
+        
+        $('.btc_but').click(function(e){
+        	$('#btc_resp').text('');
+        	//console.log(btcadds);
+        	//e.preventDefault();
+			var bname = this.id;
+			$('.btc_div').hide();
+			$('#btc_div_'+bname).show();
+			$('#bitcoinModal').modal();
+		});
+        $('#newaSub').click(function(e){
+        	e.preventDefault();
+        	var acct = $('#newaLabel').val();
+        	$('#btc_resp').html('Generating New Address, Please Wait');
+        	$http.post('http://'+ window.location.hostname +':8081/btc/newadd',{acct: acct}).success(
+        			function(newAdd){
+                		$('#btc_resp').html('New Address: '+newAdd);
+                		 
+                	});
+        });
+        $('#dumpaSub').click(function(e){
+        	e.preventDefault();
+        	var acct = $('#dumpAdd').val();
+        	$('#btc_resp').html('Dumping Private Key, Please Wait. This may take up to a couple minutes');
+        	$http.post('http://'+ window.location.hostname +':8081/btc/dumpkey',{add: acct}).success(
+        			function(pkey){
+                		$('#btc_resp').html('Private Key: '+pkey);
+                		 
+                	});
+        });
+        $('#signmsgSub').click(function(e){
+        	e.preventDefault();
+        	var acct = $('#signAdd').val();
+        	var mesg = $('#signmsg').val();
+        	$('#btc_resp').html('Signing, Please Wait.');
+        	$http.post('http://'+ window.location.hostname +':8081/btc/signmessage',{add: acct, msg: mesg}).success(
+        			function(rsp){
+                		$('#btc_resp').html('Signature: '+rsp.sig);
+                		 
+                	});
+        });
+        $('#mverifySub').click(function(e){
+        	e.preventDefault();
+        	var acct = $('#averify').val();
+        	var mesg = $('#mverify').val();
+        	var sign = $('#sverify').val();
+        	
+        	$('#btc_resp').html('Verifying, Please Wait.');
+        	$http.post('http://'+ window.location.hostname +':8081/btc/verifymessage',{add: acct, msg: mesg, sig: sign}).success(
+        			function(rsp){
+        				if(rsp == true){
+        					$('#btc_resp').html('Message Validated True');
+        				}else{
+        					$('#btc_resp').html('Error, see console log');
+        					console.log(rsp);
+        				}
+                		 
+                	});
+        });
     });
 

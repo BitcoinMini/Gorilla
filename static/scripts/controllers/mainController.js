@@ -172,4 +172,6 @@ angular.module('guerilla').controller(
         function memoryStuff() {
             
         }
+        
+      
 });

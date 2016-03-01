@@ -1,5 +1,5 @@
 #GORILLA
-An ASIMOS based User Interface.
+A Node.js based User Interface.
 
 Gorilla was originally designed for use on the Bitcoin Mini and built on Node.js but should work with any Linux/Bitcoind/Nodejs setup.  However no support is implied in making this code available. It has been extensively tested on a Raspberry Pi 2+ running Arch Linux, Bitcoind, and node.js. Browser support is limited to modern browsers with javascript enabled. It uses Angular.js and the jquery/bootstrap combo. The whole packaged product is available at [BitcoinMini.com](https://bitcoinmini.com/).
 

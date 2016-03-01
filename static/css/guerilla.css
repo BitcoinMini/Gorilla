@@ -841,3 +841,9 @@ li.divider {
   margin-right: 0;
   margin-left: 0;
 }
+
+#bitcoinModal {
+top:15%;
+left:30%;
+outline: none;
+}
