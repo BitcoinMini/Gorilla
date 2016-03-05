@@ -1,7 +1,7 @@
 #GORILLA
 A Node.js based User Interface.
 
-Gorilla was originally designed for use on the Bitcoin Mini and built on Node.js but should work with any Linux/Bitcoind/Nodejs setup.  However no support is implied in making this code available. It has been extensively tested on a Raspberry Pi 2+ running Arch Linux, Bitcoind, and node.js. Browser support is limited to modern browsers with javascript enabled. It uses Angular.js and the jquery/bootstrap combo. The whole packaged product is available at [BitcoinMini.com](https://bitcoinmini.com/).
+Gorilla was originally designed for use on the Bitcoin Mini and built on Node.js but should work with any Linux/Bitcoind/Nodejs setup with some minor changes.  However no support is implied in making this code available. It has been extensively tested on a Raspberry Pi 2+ running Arch Linux, Bitcoind, and node.js. Browser support is limited to modern browsers with javascript enabled. It uses Angular.js and the jquery/bootstrap combo. The whole packaged product is available at [BitcoinMini.com](https://bitcoinmini.com/).
 
 
 ##Install
@@ -38,7 +38,7 @@ These applications need to be installed on your system for use, and should be in
 ##The Bitcoin Mini
 Gorilla is designed to run on the Bitcoin Mini. Every piece of software was chosen for it's small and powerful nature to reduce the overall footprint of the Mini while keeping it fast and effienct.
 
-All Minis come with [Arch Linux](https://www.archlinux.org/) as it's operating system and Bitcoin Core installed with the approximately 52GB of blockchain data downloaded.
+All Minis come with [Arch Linux](https://www.archlinux.org/) as it's operating system and Bitcoin Core installed with the approximately 55GB of blockchain data downloaded and indexed for each installation.
 
 
 ###Contributors

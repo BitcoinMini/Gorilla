@@ -1,176 +1,116 @@
 <div class="editing-title container-fluid">
-	<h3>
-		<i class="material-icons xlarge">dashboard</i>&nbsp;&nbsp;Dashboard
-	</h3>
+	<h3><i class="material-icons xlarge">dashboard</i>&nbsp;&nbsp;Dashboard</h3>
 </div>
 
 <div class="container-fluid" id="home-tiles">
-		<div class="col-xs-12 col-md-4" style="margin-bottom:20px;">
-		   	<div class="home-tile markets">
-		   		<div class="dimmer">
-		   			<div class="inner-tile">
-		   				<h2>BANDWIDTH
-		   				<br /><small>Month To Date</small>
-		   				</h2>
-		   				<div class="number-box">
-		   					<p class="hlabel">UPLOAD</p>
-							<p class="hnumbers">{{ tileinfo.free }} GB</p>
-							<p class="hlabel">DOWNLOAD</p>
-							<p class="hnumbers">{{ tileinfo.download }} GB</p>
-		   				</div>
-		   				
-		   			</div>
-		   		</div>
-		   
-			</div>
-		</div>
 
-		<div class="col-xs-12 col-md-4" style="margin-bottom:20px;">
-		   	<div class="home-tile news">
-		   		<div class="dimmer">
-		   			<div class="inner-tile">
-		   				<h2>MEMORY</h2>
-		   				<div class="number-box">
-			   				<p class="hlabel">TOTAL</p>
-							<p class="hnumbers">{{ tileinfo.ramtotal }} MB</p>
-							<p class="hlabel">FREE</p>
-							<p class="hnumbers">{{ tileinfo.ramfree }} MB</p>
-						</div>
-		   			</div>
-		   		</div>
-		   
-			</div>
+	<!-- bandwidth tile -->
+	<div class="col-xs-12 col-md-4 tiles">
+	   	<div class="home-tile markets">
+	   		<div class="dimmer">
+	   			<div class="inner-tile">
+	   				<h2>BANDWIDTH<br/>
+	   					<small>Month To Date&nbsp;</small>
+	   				</h2>
+	   				<div class="number-box">
+	   					<p class="hlabel">UPLOAD</p>
+						<p class="hnumbers">{{ tileinfo.free }} GB</p>
+						<p class="hlabel">DOWNLOAD</p>
+						<p class="hnumbers">{{ tileinfo.download }} GB</p>
+	   				</div>
+	   			</div>
+	   		</div>
 		</div>
+	</div>
 
-		<div class="col-xs-12 col-md-4" style="margin-bottom:20px;">
-		   	<div class="home-tile bitcoin-tile">
-		   		<div class="dimmer">
-		   			<div class="inner-tile">
-		   				<h2>INFO</h2>
-		   				<div class="number-box">
-			   				<p class="hlabel">MINI USERNAME</p>
-							<p class="hnumbers">{{ tileinfo.username }}</p>
-							<p class="hlabel">GORILLA VERSION</p>
-							<p class="hnumbers">{{ tileinfo.gorillaver }}</p>
-						</div>
-		   			</div>
-		   		</div>
-		   
-			</div>
+	<!-- memory tile -->
+	<div class="col-xs-12 col-md-4 tiles">
+	   	<div class="home-tile news">
+	   		<div class="dimmer">
+	   			<div class="inner-tile">
+	   				<h2>MEMORY</h2>
+	   				<div class="number-box">
+		   				<p class="hlabel">TOTAL</p>
+						<p class="hnumbers">{{ tileinfo.ramtotal }} MB</p>
+						<p class="hlabel">FREE</p>
+						<p class="hnumbers">{{ tileinfo.ramfree }} MB</p>
+					</div>
+	   			</div>
+	   		</div>
 		</div>
+	</div>
 
-		<div class="col-xs-12 col-md-4" style="margin-bottom:20px;">
-		   	<div class="home-tile faddress-tile btc-tile">
-		   		<div class="dimmer">
-		   			<div class="inner-tile">
-		   				<h2>BITCOIN ADDRESSES</h2>
-		   				<div class="number-box">
-							<p><a class="btn ghost-btn btc_but" id="lista">LIST ADDRESSES</a></p>
-							<p><a class="btn ghost-btn btc_but" id="newa">NEW ADDRESS</a></p> 
-							
-						</div>
-		   			</div>
-		   		</div>
-		   
-			</div>
+	<!-- info tile -->
+	<div class="col-xs-12 col-md-4 tiles">
+	   	<div class="home-tile bitcoin-tile">
+	   		<div class="dimmer">
+	   			<div class="inner-tile">
+	   				<h2>INFO</h2>
+	   				<div class="number-box">
+		   				<p class="hlabel">MINI USERNAME</p>
+						<p class="hnumbers">{{ tileinfo.username }}</p>
+						<p class="hlabel">GORILLA VERSION</p>
+						<p class="hnumbers">{{ tileinfo.gorillaver }}</p>
+					</div>
+	   			</div>
+	   		</div>
 		</div>
-		<div class="col-xs-12 col-md-4" style="margin-bottom:20px;">
-		   	<div class="home-tile functions-tile btc-tile">
-		   		<div class="dimmer">
-		   			<div class="inner-tile">
-		   				<h2>IMPORT/EXPORT</h2>
-		   				<div class="number-box">
-			   				<div style="width:20%; float:left;">
-			   				<p><a class="btn ghost-btn btc_but" id="impa" disabled>IMPORT PRIVATE KEY</a>
-							<a class="btn ghost-btn btc_but" id="dumpa">DUMP PRIVATE KEY</a></p>
-							</div>
-							<div style="widht:75%; float:right;">
-							
-                        	</div>
-						</div>
-		   			</div>
-		   		</div>
-		   
-			</div>
+	</div>
+
+	<!-- ADDRESS tile -->
+	<div class="col-xs-12 col-md-4 tiles">
+	   	<div class="home-tile faddress-tile btc-tile">
+	   		<div class="dimmer">
+	   			<div class="inner-tile">
+	   				<h2>BITCOIN ADDRESSES</h2>
+	   				<div class="number-box">
+						<a class="btn ghost-btn" data-toggle="modal" data-target="#ListModal" ng-click="listadd()">LIST ADDRESSES</a>
+						<a class="btn ghost-btn pull-right" data-toggle="modal" data-target="#AddNewModal">NEW ADDRESS</a></p> 
+					</div>
+	   			</div>
+	   		</div>
 		</div>
-		<div class="col-xs-12 col-md-4" style="margin-bottom:20px;">
-		   	<div class="home-tile messages-tile btc-tile">
-		   		<div class="dimmer">
-		   			<div class="inner-tile">
-		   				<h2>MESSAGE SIGNING</h2>
-		   				<div class="number-box">
-			   				<div style="width:20%; float:left;">
-			   				<p><a class="btn ghost-btn btc_but"  id="signm">SIGN</a>
-							<a class="btn ghost-btn btc_but"  id="verifym">VERIFY</a></p>
-							</div>
-							<div style="widht:75%; float:right;">
-							
-                        	</div>
-						</div>
-		   			</div>
-		   		</div>
-		   
-			</div>
+	</div>
+
+	<!-- import/export tile -->
+	<div class="col-xs-12 col-md-4 tiles">
+	   	<div class="home-tile functions-tile btc-tile">
+	   		<div class="dimmer">
+	   			<div class="inner-tile">
+	   				<h2>IMPORT/EXPORT</h2>
+	   				<div class="number-box">
+		   				<p><a class="btn ghost-btn" id="impa" disabled>IMPORT PRIV KEY</a>
+						<a class="btn ghost-btn pull-right" data-toggle="modal" data-target="#DumpKeyModal" ng-click="listForDump()">DUMP PRIV KEY</a></p>
+					</div>
+	   			</div>
+	   		</div>
 		</div>
+	</div>
+
+	<!-- message tile -->
+	<div class="col-xs-12 col-md-4 tiles">
+	   	<div class="home-tile messages-tile btc-tile">
+	   		<div class="dimmer">
+	   			<div class="inner-tile">
+	   				<h2>MESSAGE SIGNING</h2>
+	   				<div class="number-box">
+		   				<p><a class="btn ghost-btn" data-toggle="modal" data-target="#SignModal" ng-click="listForDump()">SIGN</a>
+						<a class="btn ghost-btn pull-right" data-toggle="modal" data-target="#VerifyModal">VERIFY</a></p>						
+					</div>
+	   			</div>
+	   		</div>
+		</div>
+	</div>
 </div>
-<!-- Bitcoin modal -->
-        <div class="modal fade dragmod" tabindex="-1" role="dialog" id="bitcoinModal" data-backdrop="false">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Bitcoin</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="btc_div" id="btc_div_lista">
-                        	<h3>List Addresses</h3>
-                        	<ul id="btc_addList">
-                        	
-                        	</ul>
-                        </div>
-                        <div class="btc_div" id="btc_div_newa">
-                        	<h3>New Address</h3>
-                        	<form action="#">
-                        		<label>Label</label>
-                        		<input type="text" id="newaLabel" name="newaLabel" >
-                        		<a id="newaSub" class="btn">Get New Address</a>
-                        	</form>
-                        </div>
-                        <div class="btc_div" id="btc_div_dumpa">
-                        	<h3>Dump Address</h3>
-                        	<form action="#">
-                        		<select id="dumpAdd" name="dumpAdd">
-                        		</select>
-                        		<a id="dumpaSub" class="btn">Get Private Key</a>
-                        	</form>
-                        </div>
-                        <div class="btc_div" id="btc_div_signm">
-                        	<h3>Sign Message</h3>
-                        	<form action="#" id="signMform" class="signDiv">
-                        		<label for="signAdd">Address: </label><br />
-                        		<select id="signAdd" name="signAdd">
-                        		</select><br />
-                        		<label for="signmsg">Message: </label><br />
-                        		<input type="text" id="signmsg" name="signmsg" width="100%" >
-                        		<a id="signmsgSub" class="btn">Sign Message</a>
-                        	</form>
-                        </div>
-                        <div class="btc_div" id="btc_div_verifym">
-                        	<h3>Verify Message</h3>
-                        	<form action="#" id="verifyMform" class="signDiv">
-                        		<label for="mverify">Message:</label><br />
-                        		<input type="text" id="mverify" name="mverify" width="100%"><br />
-                        		<label for="averify">Address: </label><br />
-                        		<input type="text" id="averify" name="averify" width="100%"><br />
-                        		<label for="sverify">Signature: </label><br />
-                        		<input type="text" id="sverify" name="sverify" width="100%"><br />
-                        		<a id="mverifySub" class="btn">Verify Message</a>
-                        	</form>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <div class="respDiv" id="btc_resp"></div>
-                    </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
+
+<!-- MODALS -->
+<!-- List Addresses -->
+<section ng-include="'partials/homeModals/listAddresses.html'"></section>
+<!-- New Address -->
+<section ng-include="'partials/homeModals/newAddress.html'"></section>
+<!-- Dump PrivKey -->
+<section ng-include="'partials/homeModals/dumpKey.html'"></section>
+<!-- Sign Message -->
+<section ng-include="'partials/homeModals/signMessage.html'"></section>
+<!-- Verify Message -->
+<section ng-include="'partials/homeModals/verifyMessage.html'"></section>

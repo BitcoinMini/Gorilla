@@ -176,14 +176,55 @@ li {
   border-color: #b2b2b2;
   color: #b2b2b2;
 }
+.ghost-btn-dark {
+  border-color: #333333;
+  color: #333333;
+  margin-top: 3px;
+  margin-bottom: 4px;
+}
+.ghost-btn-dark:hover {
+  border-color: #1d1d1d;
+  color: #1d1d1d;
+}
+.ghost-btn-clear {
+  border-color: transparent;
+  color: #333333;
+  margin-top: 3px;
+  margin-bottom: 4px;
+}
+.ghost-btn-clear:hover {
+  color: #1d1d1d;
+}
+.modal {
+  top: 5%;
+  left: 30%;
+  outline: none;
+}
+.modalTable {
+  font-size: 14px;
+}
+.modalTable th {
+  font-size: 14px;
+}
+#bitcoinModal {
+  top: 15%;
+  left: 30%;
+  outline: none;
+}
 @media only screen and (max-width: 480px) {
   #wrapper {
     margin: 0;
     padding: 120px 0 40px 0;
   }
+  .modal {
+    left: 5%;
+  }
 }
 /* slide-out menu */
 #home-tiles {
+  margin-bottom: 20px;
+}
+#home-tiles .tiles {
   margin-bottom: 20px;
 }
 #home-tiles .home-tile {
@@ -292,6 +333,20 @@ li {
 }
 #prices-bar .red-text {
   color: red;
+}
+.modalResults {
+  font-size: 16px !important;
+}
+.modal-help {
+  font-size: 14px;
+}
+@media only screen and (max-width: 480px) {
+  .modalResults {
+    font-size: 12px !important;
+  }
+  .modal-help {
+    font-size: 12px;
+  }
 }
 /* slide-out menu */
 .ng-pageslide {
@@ -840,10 +895,4 @@ li.divider {
 .modal-dialog {
   margin-right: 0;
   margin-left: 0;
-}
-
-#bitcoinModal {
-top:15%;
-left:30%;
-outline: none;
 }

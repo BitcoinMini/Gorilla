@@ -10,21 +10,26 @@ angular.module('guerilla')
 .controller(
     'homeController', 
     function( $scope, $rootScope, $http, $q ) {
-    		$('.btc_but').css("cursor", 'wait');
+
         /**
          *  Variables
          */
         $scope.tileinfo = [];  // for the menu information
+        $scope.modalValues = []; // for all bitcoin modal values
+        $scope.modalLoading = false; // for loader on modals
+        $scope.result = [];
+        $scope.listResults = [];
+        $scope.modalResult = false; // for modal results
+        $scope.modalList = false;
+        $scope.modalAddNew = false;
+        $scope.modalDump = false;
+        $scope.modalSign = false;
+        $scope.modalVerify = false;
 
+        // run the loading function
         moreStats();
-        
-        var loop2 = setInterval( moreStats, 60000 ); // 10 mins
 
-        /**
-         *  Loader
-         *
-         *  TODO Comment
-         */
+        // Load all the stats needed when page loads
         function moreStats() {
 
             // build array of get requests from our APIs
@@ -57,209 +62,134 @@ angular.module('guerilla')
                 $scope.tileinfo.username = data[2].data;
                 // gorilla version
                 $scope.tileinfo.gorillaver = data[3].data;
+
+                // set an infinite loop
+                var loop2 = setInterval( moreStats, 60000 ); // 10 mins
             }); // .then()
-        } // loader()
+        } // moreStats()
 
-        // BitFinex websocket
-        ////////////////////////////////////////////////////////////////
-        var bitfinex = [];
-        $scope.btfx  = [];
+        
+        //Make modals draggable
+        // $('.dragmod').draggable({handle: '.modal-header'});
+        
+        // add a new address
+        $scope.newAdd = function() {
 
-        // Start bitfinex websocket
-        var bitfinex = new WebSocket('wss://api2.bitfinex.com:3000/ws');
-        // Open the connection and pass the needed request
-        // Learn More http://docs.bitfinex.com/#websocket
-        bitfinex.onopen = function(){
-            bitfinex.send(JSON.stringify({
-                "event": "subscribe",
-                "channel": "ticker",
-                "pair": "BTCUSD"
-            }));
+            // show loading in modal header
+            $scope.modalLoading = true;
+
+            // call for a newadd with the value from the input box for label
+            $http.post('http://'+ window.location.hostname +':8081/btc/newadd', { acct: $scope.modalValues.newAddLabel })
+                // when complete call this function
+                .then(function(result) {
+
+                    $scope.result.label = "New Address";
+                    $scope.result.val   = result.data.add;
+                    $scope.result.acct  = result.config.data.acct;
+                    $scope.modalResult  = true;
+                    $scope.modalLoading = false;
+                });
         }
-        // Upon recieving a new message
-        bitfinex.onmessage = function(msg) {
 
-            // websockets come through the rootscope of the DOM
-            $rootScope.$apply(function() {
-                bitfinex = JSON.parse(msg.data);
+        // list addresses
+        $scope.listadd = function() {
 
-                // This filters out the "hb" messages
-                if(bitfinex.length > 2) {
-                    $scope.btfx.chg   = bitfinex[5].toFixed(2);
-                    $scope.btfx.pct   = bitfinex[6]*100;
-                    $scope.btfx.price = bitfinex[7].toFixed(2);
-                    $scope.btfx.vol   = bitfinex[8].toFixed(0);
-                    // for coloring text
-                    // assume price went up
-                    $scope.btfx.up = true;
-                    if($scope.btfx.chg < 0) $scope.btfx.up = false;
-                }
-            });
-        };
-        // To close the connection, we don't use this really
-        bitfinex.onclose = function() { console.log('Bitfinex connection is closed'); }
-        /////////////////////////////////////////////////////////////////
+            // show loading in modal header
+            $scope.modalLoading = true;
 
-        // OKCoin Websocket
-        ////////////////////////////////////////////////////////////////
-        // var okcoin = [];
-        // $scope.okcn  = [];
+            
 
-        // // Start okcoin websocket
-        // var okcoin = new WebSocket('wss://real.okcoin.com:10440/websocket/okcoinapi');
-        // // Open the connection and pass the needed request
-        // okcoin.onopen = function(){
-        //     okcoin.send(JSON.stringify({
-        //         'event':'addChannel',
-        //         'channel':'ok_btcusd_ticker'
-        //     }));
-        // }
-        // // Upon recieving a new message
-        // okcoin.onmessage = function(msg) {
+            // call for a newadd with the value from the input box for label
+            $http.get('http://'+ window.location.hostname +':8081/btc/getadds')
+                // when complete call this function
+                .then(function(result) {
+                    
+                    $scope.listResults = result.data;
+                    $scope.modalResult  = true;
+                    $scope.modalLoading = false;
+                });
+        }
 
-        //     // websockets come through the rootscope of the DOM
-        //     $rootScope.$apply(function() {
+        function listForDump() {
+            // call for a newadd with the value from the input box for label
+            $http.get('http://'+ window.location.hostname +':8081/btc/getadds')
+                // when complete call this function
+                .then(function(result) {
+                    
+                    $scope.listResults = result.data;
+                    $scope.modalResult  = true;
+                    $scope.modalLoading = false;
+                });
+        }
 
-        //         okcoin = msg.data;
+        // Dump PrivKey
+        $scope.dumpkey = function() {
 
-        //         $scope.okcn.high  = okcoin.data.high;
-        //         $scope.okcn.low   = okcoin.data.low;
-        //         $scope.okcn.price = okcoin.data.last;
-        //         $scope.okcn.vol   = okcoin.data.vol.toFixed(0);
-        //     });
-        // };
-        // // To close the connection, we don't use this really
-        // okcoin.onclose = function() { console.log('OKCoin connection is closed'); }
-        /////////////////////////////////////////////////////////////////
+            // show loading in modal header
+            $scope.modalLoading = true;
 
+            // clear the interval during the dump process, we reset it after
+            clearInterval(loop2);
 
-        // Coinbase Websocket
-        ////////////////////////////////////////////////////////////////
-        var coinbase = [];
-        $scope.cnbs  = [];
+            $http.post('http://'+ window.location.hostname +':8081/btc/dumpkey', {add: $scope.modalValues.DumpKeyLabel} )
+                .then(function(privkey) {
+                    $scope.result.label = "Private Key";
+                    $scope.result.val   = privkey;
+                    $scope.modalResult  = true;
+                    $scope.modalLoading = false;
+                    // now the callback
+                }), function() { 
+                    // reset the interval
+                    loop2 = setInterval( moreStats, 60000 ); // 10 mins
+                };            
+        }
 
-        // Start coinbase websocket
-        // var coinbase = new WebSocket('wss://ws-feed.exchange.coinbase.com');
-        // // Open the connection and pass the needed request
-        // coinbase.onopen = function(){
-        //     coinbase.send(JSON.stringify({
-        //         "type": "subscribe",
-        //         "product_id": "BTC-USD"
-        //     }));
-        // }
-        // // Upon recieving a new message
-        // coinbase.onmessage = function(msg) {
-        //     //console.log(msg.data[0]);
+        // Sign Message
+        $scope.signMessage = function() {
+            
+            // show loading in modal header
+            $scope.modalLoading = true;
 
-        //     // // websockets come through the rootscope of the DOM
-        //     $rootScope.$apply(function() {
+            // clear the interval during the dump process, we reset it after
+            clearInterval(loop2);
 
-        //         coinbase = JSON.parse(msg.data);
-        //         console.log(msg.data.type);
+            $http.post('http://'+ window.location.hostname +':8081/btc/signmessage',{add: $scope.modalValues.SignLabel, msg: $scope.modalValues.Message})
+                .then(function(result){
+                    $scope.result.label = "Signature";
+                    $scope.result.val   = result.sig;
+                    $scope.modalResult  = true;
+                    $scope.modalLoading = false;    
+                }), function() { 
+                    // reset the interval
+                    loop2 = setInterval( moreStats, 60000 ); // 10 mins
+                };
+        }
 
-        //         if(coinbase[0] == "match") {
-        //             //console.log(coinbase[5]);
-        //             $scope.cnbs.price = coinbase.price;
-        //         }
+        // Verify Message
+        $scope.verifyMessage = function() {
+            
+            // show loading in modal header
+            $scope.modalLoading = true;
 
-        //     //     $scope.cnbs.chg   = coinbase.data.last.toFixed(2);
-        //     //     $scope.cnbs.pct   = coinbase[6]*100;
-                
-        //     //     $scope.cnbs.vol   = coinbase[8].toFixed(0);
-        //     });
-        // };
-        // // To close the connection, we don't use this really
-        // coinbase.onclose = function() { console.log('Coinbase connection is closed'); }
-        /////////////////////////////////////////////////////////////////
-        
-      //Make modals draggable
-        $('.dragmod').draggable({handle: '.modal-header'});
-     
-      //BTC Functions
-        function getBTCadds(){
-        	$('#btc_resp').text('LOADING ADDRESSES');
-        	var btcAdds;
-        $.getJSON('http://'+ window.location.hostname +':8081/btc/getadds',function(data){
-        	btcAdds = data;
-        	$.each(btcAdds,function(id,adata){
-        		var tout = '<option value="'+adata['address']+'">'+adata['address'];
-        		var lout = '<li>'+adata['address'];
-        		if(adata['account'] != ""){
-        			tout += ' : '+adata['account'];
-        			lout += ' : '+adata['account'];
-        		}
-        		tout += '</option>';
-        		lout += '</li>';
-        		$('#dumpAdd').append(tout);
-        		$('#signAdd').append(tout);
-        		$('#btc_addList').append(lout);
-        	});
-        	$('#btc_resp').text('');
-        	$('.btc_but').css("cursor", 'pointer');
-        });
-        
-        return btcAdds;
+            // clear the interval during the dump process, we reset it after
+            clearInterval(loop2);
+            
+            $http.post('http://'+ window.location.hostname +':8081/btc/verifymessage',
+                {add: $scope.modalValues.verifyAddress, msg: $scope.modalValues.verifyMessage, sig: $scope.modalValues.verifySignature})
+                .then(function(result){
+                    if(result == true) {
+                        $scope.result.verify = "Message Validated True";
+                    } else {
+                        $scope.result.verify = "Error, see console log";
+                        console.log(result);
+                    }
+                    $scope.modalResult  = true;
+                    $scope.modalLoading = false;    
+                }), function() { 
+                    // reset the interval
+                    loop2 = setInterval( moreStats, 60000 ); // 10 mins
+                };
         }
         
-        var btcadds = getBTCadds();
-        
-        $('.btc_but').click(function(e){
-        	$('#btc_resp').text('');
-        	//console.log(btcadds);
-        	//e.preventDefault();
-			var bname = this.id;
-			$('.btc_div').hide();
-			$('#btc_div_'+bname).show();
-			$('#bitcoinModal').modal();
-		});
-        $('#newaSub').click(function(e){
-        	e.preventDefault();
-        	var acct = $('#newaLabel').val();
-        	$('#btc_resp').html('Generating New Address, Please Wait');
-        	$http.post('http://'+ window.location.hostname +':8081/btc/newadd',{acct: acct}).success(
-        			function(newAdd){
-                		$('#btc_resp').html('New Address: '+newAdd);
-                		 
-                	});
-        });
-        $('#dumpaSub').click(function(e){
-        	e.preventDefault();
-        	var acct = $('#dumpAdd').val();
-        	$('#btc_resp').html('Dumping Private Key, Please Wait. This may take up to a couple minutes');
-        	$http.post('http://'+ window.location.hostname +':8081/btc/dumpkey',{add: acct}).success(
-        			function(pkey){
-                		$('#btc_resp').html('Private Key: '+pkey);
-                		 
-                	});
-        });
-        $('#signmsgSub').click(function(e){
-        	e.preventDefault();
-        	var acct = $('#signAdd').val();
-        	var mesg = $('#signmsg').val();
-        	$('#btc_resp').html('Signing, Please Wait.');
-        	$http.post('http://'+ window.location.hostname +':8081/btc/signmessage',{add: acct, msg: mesg}).success(
-        			function(rsp){
-                		$('#btc_resp').html('Signature: '+rsp.sig);
-                		 
-                	});
-        });
-        $('#mverifySub').click(function(e){
-        	e.preventDefault();
-        	var acct = $('#averify').val();
-        	var mesg = $('#mverify').val();
-        	var sign = $('#sverify').val();
-        	
-        	$('#btc_resp').html('Verifying, Please Wait.');
-        	$http.post('http://'+ window.location.hostname +':8081/btc/verifymessage',{add: acct, msg: mesg, sig: sign}).success(
-        			function(rsp){
-        				if(rsp == true){
-        					$('#btc_resp').html('Message Validated True');
-        				}else{
-        					$('#btc_resp').html('Error, see console log');
-        					console.log(rsp);
-        				}
-                		 
-                	});
-        });
     });
 

@@ -1,0 +1,35 @@
+<div class="modal fade dragmod" id="VerifyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Verify Message</h4>
+            </div>
+            <div class="modal-body clearfix">
+            	
+            	<form ng-submit="verifyMessage()">
+            		<label for="mverify">Message</label>
+            		<input class="form-control" type="text" id="mverify" name="mverify" width="100%" ng-model="modalValues.verifyMessage">
+            		<label for="averify">Address</label>
+            		<input class="form-control" type="text" id="averify" name="averify" width="100%" ng-model="modalValues.verifyAddress">
+            		<label for="sverify">Signature</label>
+            		<input class="form-control" type="text" id="sverify" name="sverify" width="100%" ng-model="modalValues.verifySignature">
+            		<input type="submit" class="btn ghost-btn-clear" value="Verify Message" />
+            	</form>
+            	<a class="btn ghost-btn-clear" role="button" data-toggle="collapse" href="#verifyHelp" aria-expanded="false" aria-controls="verifyHelp">Help ?</a>
+				<div class="collapse" id="verifyHelp">
+				    <div class="well modal-help">
+				    This will be some helpful stuff....
+				    </div>
+				</div>
+            </div>
+      		<!-- Results go here -->
+            <div class="col-xs-12 modalResults" ng-show="modalResult">
+                <div class="col-xs-12">{{ result.verify }}</div>
+            </div>
+            <div class="modal-footer">
+				<button type="button" class="btn ghost-btn-clear" data-dismiss="modal">Close</button>
+			</div>
+    	</div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

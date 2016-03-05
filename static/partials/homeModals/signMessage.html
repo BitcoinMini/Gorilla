@@ -1,0 +1,35 @@
+<div class="modal fade dragmod" id="SignModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Add An Address</h4>
+            </div>
+            <div class="modal-body clearfix">
+            	<form ng-submit="signMessage()">
+            		<label for="signAdd">Address</label>
+            		<select class="form-control" id="signAdd" name="signAdd">
+            			<option ng-repeat="item in listResults" value="{{ item.address }}" ng-model="modalValues.SignLabel"></option>
+            		</select>
+            		<label for="signmsg">Message</label>
+            		<input class="form-control" type="text" id="signmsg" name="signmsg" width="100%" ng-model="modalValues.Message" >
+            		<input type="submit" class="btn ghost-btn-clear" value="Sign Message" />
+            	</form>
+            	<a class="btn ghost-btn-clear" role="button" data-toggle="collapse" href="#SignHelp" aria-expanded="false" aria-controls="SignHelp">Help ?</a>
+				<div class="collapse" id="SignHelp">
+				    <div class="well modal-help">
+				    This will be some helpful stuff....
+				    </div>
+				</div>
+            </div>
+      		<!-- Results go here -->
+            <div class="col-xs-12 modalResults" ng-show="modalResult">
+                <div class="col-xs-12">{{ result.label }}</div>
+                <div class="col-xs-12">{{ result.val }}</div>
+            </div>
+            <div class="modal-footer">
+				<button type="button" class="btn ghost-btn-clear" data-dismiss="modal">Close</button>
+			</div>
+    	</div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

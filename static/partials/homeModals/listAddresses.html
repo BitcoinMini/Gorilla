@@ -1,0 +1,27 @@
+<div class="modal fade dragmod" id="ListModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">My Addresses</h4>
+            </div>
+            <div class="modal-body clearfix">
+                <div class="table-responsive">
+                	<table class="table modalTable">
+	                	<tr>
+	                		<th>Account Label</th>
+	                		<th>Address</th>
+	                	</tr>
+	                	<tr ng-repeat="item in listResults">
+	                		<td>{{item.account}}</td>
+	                		<td>{{item.address}}</td>
+	                	</tr>
+	                </table>
+                </div>
+            </div>
+      		<div class="modal-footer">
+				<button type="button" class="btn ghost-btn-clear" data-dismiss="modal">Close</button>
+			</div>
+    	</div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

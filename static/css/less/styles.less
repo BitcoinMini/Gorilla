@@ -141,10 +141,48 @@ ul,li {list-style: none; padding-left:0; }
 	margin-top:3px;
 	margin-bottom:4px;
 }
+.ghost-btn-dark {
+	border-color:@textDark;
+	color:@textDark;
+	&:hover {
+		border-color: @menuDark;
+		color: @menuDark;
+	}
+	margin-top:3px;
+	margin-bottom:4px;
+}
+.ghost-btn-clear {
+	border-color:transparent;
+	color:@textDark;
+	&:hover {
+		color: @menuDark;
+	}
+	margin-top:3px;
+	margin-bottom:4px;
+}
+.modal {
+	top:5%;
+	left:30%;
+	outline: none;
+}
+.modalTable {
+	th {
+		font-size: 14px;
+	}
+	font-size:14px;
+}
+#bitcoinModal {
+top:15%;
+left:30%;
+outline: none;
+}
 
 @media @mobile {
 	#wrapper { 
 		.mar-pad(0, 120px 0 40px 0);
+	}
+	.modal {
+		left:5%;
 	}
 }
 
