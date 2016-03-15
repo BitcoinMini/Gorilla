@@ -1,0 +1,71 @@
+<ul id="sidebar">
+    <!-- Status --> 
+    <li class="menu-item-connection left">
+        <div ng-show="!info.loaded">
+            <h5>
+                <i class="material-icons orange pull-left">lens</i> Loading <img src="img/loader.gif" height="14px"/>
+            </h5>
+        </div>
+        <div ng-show="info.loaded">
+            <h5>
+                <i class="material-icons green pull-left">lens</i>&nbsp;&nbsp;online
+                <span class="pull-right">Sys uptime&nbsp;&nbsp;{{ info.sysuptime }}</span>
+            </h5>
+        </div>
+    <!-- Connection items -->
+    <li class="menu-item left p2p">
+        <div class="quads info-button">
+            <a data-toggle="collapse" 
+               data-target="#mobileStatsDropdown" 
+               aria-expanded="false" 
+               aria-controls="collapseExample">
+               <p><i class="material-icons" style="vertical-align:bottom;">swap_vert</i></p>
+            </a>
+        </div>
+        <div class="quads livesince">
+            <h5>BTC Uptime</h5><p id="forLoader">{{ info.livesince }}</p>
+        </div>
+        <div class="quads peers">
+            <h5>Peers</h5><p>{{ info.peers }}</p>
+        </div>
+        <div class="quads behind">
+            <h5>Behind</h5><p>{{ info.blocksbehind }}</p>
+        </div>
+    </li>
+    <!-- Info items -->
+    <li class="menu-item left more ghidden"><p>{{ info.ip }}</p><h5>External IP</h5></li>
+    <li class="menu-item left more ghidden"><p>{{ info.protocolversion }}</p><h5>Protocol Version</h5></li>
+    <li class="menu-item left more ghidden"><p>{{ info.miniblock }}</p><h5>Block</h5></li>
+    <li class="menu-item left more ghidden"><p>{{ info.difficulty }}</p><h5>Difficulty</h5></li>
+    <li class="dvd ghidden"></li>
+    <li class="menu-item left more ghidden"><p>{{ info.txns }}</p><h5>Transactions 24 Hrs</h5></li>
+    <li class="menu-item left more ghidden"><p>{{ info.blockmins }}</p><h5>Avg Mins per Block</h5></li>
+    <li class="menu-item left more ghidden"><p>{{ info.hashrate }}</p><h5>Hash Rate GH</h5></li>  
+    <li class="dvd ghidden"></li>
+    <li class="menu-item left more ghidden">
+        <p>$ {{ info.index }}</p>
+        <h5 style="color:#db9100;">Bitcoin Average Price&nbsp;&nbsp;
+            <a href="http://theindex.io" target="_blank"><i class="material-icons" style="vertical-align:bottom;font-size:12px;">open_in_new</i></a>
+        </h5>
+    </li>
+</ul>
+<!-- This is the mobile dropdown for stats -->
+<div class="collapse" id="mobileStatsDropdown">
+    <ul>
+        <li class="menu-item left mobile-stats"><p>{{ info.ip }}</p><h5>External IP</h5></li>
+        <li class="menu-item left mobile-stats"><p>{{ info.protocolversion }}</p><h5>Protocol Version</h5></li>
+        <li class="menu-item left mobile-stats"><p>{{ info.miniblock }}</p><h5>Block</h5></li>
+        <li class="menu-item left mobile-stats"><p>{{ info.difficulty }}</p><h5>Difficulty</h5></li>
+        <li class="dvd"></li>
+        <li class="menu-item left mobile-stats"><p>{{ info.txns }}</p><h5>Transactions 24 Hrs</h5></li>
+        <li class="menu-item left mobile-stats"><p>{{ info.blockmins }}</p><h5>Avg Mins per Block</h5></li>
+        <li class="menu-item left mobile-stats"><p>{{ info.hashrate }}</p><h5>Hash Rate GH</h5></li>  
+        <li class="dvd"></li>
+        <li class="menu-item left mobile-stats">
+            <p>$ {{ info.index }}</p>
+            <h5 style="color:#db9100;">Bitcoin Average Price&nbsp;&nbsp;
+                <a href="http://theindex.io" target="_blank"><i class="material-icons" style="vertical-align:bottom;font-size:12px;">open_in_new</i></a>
+            </h5>
+        </li>
+    </ul>
+</div>

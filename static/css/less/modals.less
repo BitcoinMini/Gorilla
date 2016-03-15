@@ -1,0 +1,63 @@
+.modal {
+	top:5%;
+	left:30%;
+	outline: none;
+}
+.modalTable {
+	th {
+		font-size: 14px;
+	}
+	font-size:14px;
+}
+
+.modalResults {
+	font-size:@font-md !important;
+	word-wrap: break-word;
+	max-width:100%;
+}
+
+.modal-help {
+	font-size:14px;
+}
+
+.modal-header {
+	background:@menu;
+}
+
+.logo-modal {
+	height:24px;
+	margin-top:-5px;
+}
+
+.modal-title {
+	font-family:'Play';
+	font-size:@font-lg;
+	color:@light;
+}
+
+.modal-body {
+	label {
+		font-weight:400;
+		font-size:@font-md;
+	}
+}
+
+.power-alert { font-size:@font-md*.8; margin:10px; }
+.mobile-alert { display:none; }
+.modal-p { font-size:@font-md*.8; }
+pre {
+	margin-top:10px;
+}
+
+@media @mobile {
+	.modal {
+		left:1%;
+		top:120px;
+	}
+	.modalResults {
+		font-size:12px !important;
+	}
+	.modal-help {
+		font-size:12px;
+	}
+}

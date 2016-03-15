@@ -14,20 +14,21 @@ angular.module('guerilla')
         /**
          *  Variables
          */
-        $scope.tileinfo = [];  // for the menu information
-        $scope.modalValues = []; // for all bitcoin modal values
+        $scope.tileinfo     = []; // for the menu information
+        $scope.modalValues  = []; // for all bitcoin modal values
         $scope.modalLoading = false; // for loader on modals
-        $scope.result = [];
-        $scope.listResults = [];
-        $scope.modalResult = false; // for modal results
-        $scope.modalList = false;
-        $scope.modalAddNew = false;
-        $scope.modalDump = false;
-        $scope.modalSign = false;
-        $scope.modalVerify = false;
+        $scope.new          = []; // for newAdd()
+        $scope.list         = []; // for listAdds()
+        $scope.dump         = []; // for dumpkey()
+        $scope.sign         = []; // for signMessage()
+        $scope.verify       = []; // for verifyMessage()
+        $scope.listResults  = [];
+        $scope.modalResult  = false; // for modal results
 
         // run the loading function
         moreStats();
+        // set an infinite loop
+        var loop2 = setInterval( moreStats, 60000 ); // 10 mins
 
         // Load all the stats needed when page loads
         function moreStats() {
@@ -63,16 +64,15 @@ angular.module('guerilla')
                 // gorilla version
                 $scope.tileinfo.gorillaver = data[3].data;
 
-                // set an infinite loop
-                var loop2 = setInterval( moreStats, 60000 ); // 10 mins
             }); // .then()
         } // moreStats()
-
         
-        //Make modals draggable
-        // $('.dragmod').draggable({handle: '.modal-header'});
-        
-        // add a new address
+        /**
+         * newAdd() - add a new address
+         *
+         * Here we take the info from the addressNew modal and create a new address
+         * TODO: delete addresses some how
+         */
         $scope.newAdd = function() {
 
             // show loading in modal header
@@ -81,61 +81,59 @@ angular.module('guerilla')
             // call for a newadd with the value from the input box for label
             $http.post('http://'+ window.location.hostname +':8081/btc/newadd', { acct: $scope.modalValues.newAddLabel })
                 // when complete call this function
-                .then(function(result) {
-
-                    $scope.result.label = "New Address";
-                    $scope.result.val   = result.data.add;
-                    $scope.result.acct  = result.config.data.acct;
-                    $scope.modalResult  = true;
+                .then(function(res) {
+                    console.log(res);
+                    $scope.new.label    = "New Address";
+                    $scope.new.val      = res.data;
+                    $scope.new.acct     = res.config.data.acct;
+                    $scope.new.result   = true;  // show the results div
                     $scope.modalLoading = false;
                 });
         }
 
-        // list addresses
+        /**
+         * listadd() - list all addresses
+         *
+         * Here we just list all the addresses, their account label and balance
+         * TODO: delete addresses some how
+         */
         $scope.listadd = function() {
 
             // show loading in modal header
             $scope.modalLoading = true;
 
-            
-
-            // call for a newadd with the value from the input box for label
+            // call for all addresses
             $http.get('http://'+ window.location.hostname +':8081/btc/getadds')
                 // when complete call this function
-                .then(function(result) {
-                    
-                    $scope.listResults = result.data;
-                    $scope.modalResult  = true;
+                .then(function(res) {
+                    $scope.list         = res.data;
+                    //$scope.list.result  = true;
                     $scope.modalLoading = false;
                 });
         }
 
-        function listForDump() {
-            // call for a newadd with the value from the input box for label
-            $http.get('http://'+ window.location.hostname +':8081/btc/getadds')
-                // when complete call this function
-                .then(function(result) {
-                    
-                    $scope.listResults = result.data;
-                    $scope.modalResult  = true;
-                    $scope.modalLoading = false;
-                });
-        }
-
-        // Dump PrivKey
+        /**
+         * dumpkey() - dump the private key
+         *
+         * Here we dump the private key for a selected address
+         * TODO: delete addresses some how
+         */
         $scope.dumpkey = function() {
 
             // show loading in modal header
             $scope.modalLoading = true;
 
             // clear the interval during the dump process, we reset it after
+            // we have to do this because the dumpkey process can take a while and 
+            // we don't want it interupted
             clearInterval(loop2);
 
             $http.post('http://'+ window.location.hostname +':8081/btc/dumpkey', {add: $scope.modalValues.DumpKeyLabel} )
                 .then(function(privkey) {
-                    $scope.result.label = "Private Key";
-                    $scope.result.val   = privkey;
-                    $scope.modalResult  = true;
+                    console.log(privkey);
+                    $scope.dump.label   = "Private Key";
+                    $scope.dump.val     = privkey;
+                    $scope.dump.result  = true;
                     $scope.modalLoading = false;
                     // now the callback
                 }), function() { 
@@ -144,20 +142,31 @@ angular.module('guerilla')
                 };            
         }
 
-        // Sign Message
+        /**
+         * signMessage()
+         *
+         * Here we sign a message with a certain address's key
+         * TODO: print
+         */
         $scope.signMessage = function() {
             
             // show loading in modal header
             $scope.modalLoading = true;
 
             // clear the interval during the dump process, we reset it after
+            // we have to do this because the dumpkey process can take a while and 
+            // we don't want it interupted
             clearInterval(loop2);
 
-            $http.post('http://'+ window.location.hostname +':8081/btc/signmessage',{add: $scope.modalValues.SignLabel, msg: $scope.modalValues.Message})
-                .then(function(result){
-                    $scope.result.label = "Signature";
-                    $scope.result.val   = result.sig;
-                    $scope.modalResult  = true;
+            $http.post('http://'+ window.location.hostname +':8081/btc/signmessage',{ msg: $scope.modalValues.Message, add: $scope.modalValues.SignAdd })
+                .then(function(res){
+
+                    $scope.sign.label = "Signature";
+                    $scope.sign.val   = res.data.sig;
+                    $scope.sign.msg   = res.data.msg;
+                    $scope.sign.addrlabel = "Address used";
+                    $scope.sign.addr  = res.data.add;
+                    $scope.sign.result  = true;
                     $scope.modalLoading = false;    
                 }), function() { 
                     // reset the interval
@@ -165,31 +174,54 @@ angular.module('guerilla')
                 };
         }
 
-        // Verify Message
+        /**
+         * verifyMessage() - verify message
+         *
+         * Here we verify if a message was signed by a certain key
+         */
         $scope.verifyMessage = function() {
             
             // show loading in modal header
             $scope.modalLoading = true;
 
             // clear the interval during the dump process, we reset it after
+            // we have to do this because the dumpkey process can take a while and 
+            // we don't want it interupted
             clearInterval(loop2);
             
             $http.post('http://'+ window.location.hostname +':8081/btc/verifymessage',
                 {add: $scope.modalValues.verifyAddress, msg: $scope.modalValues.verifyMessage, sig: $scope.modalValues.verifySignature})
-                .then(function(result){
-                    if(result == true) {
-                        $scope.result.verify = "Message Validated True";
+                .then(function(res){
+                    if(res == true) {
+                        $scope.verify = "Message Validated True";
                     } else {
-                        $scope.result.verify = "Error, see console log";
-                        console.log(result);
+                        $scope.verify = "Error, see console log";
                     }
-                    $scope.modalResult  = true;
+                    $scope.verify.result  = true;
                     $scope.modalLoading = false;    
                 }), function() { 
                     // reset the interval
                     loop2 = setInterval( moreStats, 60000 ); // 10 mins
                 };
         }
+
+        // Misc functions for modals
+        // This is to load all the addresses in the select menus
+        $scope.listAll = function() {
+            // call for a newadd with the value from the input box for label
+            $http.get('http://'+ window.location.hostname +':8081/btc/getadds')
+                // when complete call this function
+                .then(function(res) {
+                    $scope.listResults = res.data;
+                    //$scope.modalResult  = true;
+                    $scope.modalLoading = false;
+                });
+        }
+        // clear individual modals results
+        $scope.clearNew = function() { $scope.new = ''; }
+        $scope.clearDump = function() { $scope.dump = ''; }
+        $scope.clearSign = function() { $scope.sign = ''; }
+        $scope.clearVerify = function() { $scope.verify = ''; }
         
     });
 

@@ -10,14 +10,14 @@
 	   		<div class="dimmer">
 	   			<div class="inner-tile">
 	   				<h2>BANDWIDTH<br/>
-	   					<small>Month To Date&nbsp;</small>
+	   					<small>Month To Date</small>
 	   				</h2>
-	   				<div class="number-box">
+	   				<div class="number-box bottom">
 	   					<p class="hlabel">UPLOAD</p>
 						<p class="hnumbers">{{ tileinfo.free }} GB</p>
 						<p class="hlabel">DOWNLOAD</p>
 						<p class="hnumbers">{{ tileinfo.download }} GB</p>
-	   				</div>
+	   				</div> 
 	   			</div>
 	   		</div>
 		</div>
@@ -29,7 +29,7 @@
 	   		<div class="dimmer">
 	   			<div class="inner-tile">
 	   				<h2>MEMORY</h2>
-	   				<div class="number-box">
+	   				<div class="number-box bottom">
 		   				<p class="hlabel">TOTAL</p>
 						<p class="hnumbers">{{ tileinfo.ramtotal }} MB</p>
 						<p class="hlabel">FREE</p>
@@ -46,7 +46,7 @@
 	   		<div class="dimmer">
 	   			<div class="inner-tile">
 	   				<h2>INFO</h2>
-	   				<div class="number-box">
+	   				<div class="number-box bottom">
 		   				<p class="hlabel">MINI USERNAME</p>
 						<p class="hnumbers">{{ tileinfo.username }}</p>
 						<p class="hlabel">GORILLA VERSION</p>
@@ -64,8 +64,8 @@
 	   			<div class="inner-tile">
 	   				<h2>BITCOIN ADDRESSES</h2>
 	   				<div class="number-box">
-						<a class="btn ghost-btn" data-toggle="modal" data-target="#ListModal" ng-click="listadd()">LIST ADDRESSES</a>
-						<a class="btn ghost-btn pull-right" data-toggle="modal" data-target="#AddNewModal">NEW ADDRESS</a></p> 
+						<a class="btn ghost-btn left-btn" data-toggle="modal" data-target="#ListModal" ng-click="listadd()">LIST ADDRESSES</a>
+						<a class="btn ghost-btn right-btn" data-toggle="modal" data-target="#AddNewModal">NEW ADDRESS</a>
 					</div>
 	   			</div>
 	   		</div>
@@ -79,8 +79,8 @@
 	   			<div class="inner-tile">
 	   				<h2>IMPORT/EXPORT</h2>
 	   				<div class="number-box">
-		   				<p><a class="btn ghost-btn" id="impa" disabled>IMPORT PRIV KEY</a>
-						<a class="btn ghost-btn pull-right" data-toggle="modal" data-target="#DumpKeyModal" ng-click="listForDump()">DUMP PRIV KEY</a></p>
+		   				<a class="btn ghost-btn left-btn" id="impa" disabled>IMPORT PRIV KEY</a>
+						<a class="btn ghost-btn right-btn" data-toggle="modal" data-target="#DumpKeyModal" ng-click="listAll()">DUMP PRIV KEY</a>
 					</div>
 	   			</div>
 	   		</div>
@@ -94,8 +94,8 @@
 	   			<div class="inner-tile">
 	   				<h2>MESSAGE SIGNING</h2>
 	   				<div class="number-box">
-		   				<p><a class="btn ghost-btn" data-toggle="modal" data-target="#SignModal" ng-click="listForDump()">SIGN</a>
-						<a class="btn ghost-btn pull-right" data-toggle="modal" data-target="#VerifyModal">VERIFY</a></p>						
+		   				<a class="btn ghost-btn left-btn" data-toggle="modal" data-target="#SignModal" ng-click="listAll()">SIGN</a>
+						<a class="btn ghost-btn right-btn" data-toggle="modal" data-target="#VerifyModal">VERIFY</a>						
 					</div>
 	   			</div>
 	   		</div>
@@ -105,12 +105,12 @@
 
 <!-- MODALS -->
 <!-- List Addresses -->
-<section ng-include="'partials/homeModals/listAddresses.html'"></section>
+<section ng-include="'partials/modals/addressList.html'"></section>
 <!-- New Address -->
-<section ng-include="'partials/homeModals/newAddress.html'"></section>
+<section ng-include="'partials/modals/addressNew.html'"></section>
 <!-- Dump PrivKey -->
-<section ng-include="'partials/homeModals/dumpKey.html'"></section>
+<section ng-include="'partials/modals/keyDump.html'"></section>
 <!-- Sign Message -->
-<section ng-include="'partials/homeModals/signMessage.html'"></section>
+<section ng-include="'partials/modals/messageSign.html'"></section>
 <!-- Verify Message -->
-<section ng-include="'partials/homeModals/verifyMessage.html'"></section>
+<section ng-include="'partials/modals/messageVerify.html'"></section>

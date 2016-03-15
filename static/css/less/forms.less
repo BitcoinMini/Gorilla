@@ -1,0 +1,47 @@
+input {
+	background:transparent;
+	border-radius:0;
+	border:none;
+	border-bottom:1px solid @textExtraLight;
+	font-size:@font-md;
+	color:@textLight;
+
+	&:focus {
+		border-bottom:2px solid @textLight;
+	}
+}
+
+.well {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.ghost-select {
+    padding: 0;
+    margin: 20px 0;
+    border: none;
+    width: 100%;
+    border-radius: 0;
+    overflow: hidden;
+}
+
+select {
+    padding: 5px 8px;
+    width:100%;
+    font-size:@font-sm;
+    border:none;
+	border-bottom:1px solid @textExtraLight;
+    box-shadow: none;
+    background-color: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+    &:focus {
+		border-bottom:1px solid @textLight;
+	}
+}
+
+option {
+	padding: 3px 12px;
+}

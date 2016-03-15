@@ -1,0 +1,48 @@
+<div class="modal fade dragmod" id="DumpKeyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">
+                    <img src="img/gorilla_white.png" alt="logo" class="logo-modal"/>
+                     &nbsp;Dump a Private Key
+                      <img src="img/loader.gif" height="30px" ng-show="modalLoading"/>
+                </h4>
+            </div>
+            <div class="modal-body clearfix">
+                <div class="alert alert-danger power-alert" role="alert">
+                    <h4><strong>Warning!</strong></h4>
+                    This operation will result in the private key being compromised. Please spend immediately.
+                </div>
+            	<form ng-submit="dumpkey()">
+                    <div class="ghost-select">
+                		<select id="dumpAdd" name="dumpAdd" ng-model="modalValues.DumpKeyLabel">
+                            <option value="">Select an address here</option>
+                			<option ng-repeat="item in listResults" value="{{ item.address }}">
+                                LABEL: {{ item.account ? item.account : "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" }} -- 
+                                BAL: {{ item.amount ? item.amount : "0" }} btc -- &nbsp;&nbsp;&nbsp; 
+                                ADDRESS: {{ item.address }}
+                            </option>
+                		</select>
+                    </div>
+                    <a class="ghost-btn-help" role="button" data-toggle="collapse" href="#DumpKeyHelp" aria-expanded="false" aria-controls="DumpKeyHelp"><i class="material-icons">help</i></a>
+            		<input type="submit" class="btn ghost-btn-clear pull-right" value="Get Private Key" />
+            	</form>
+            	
+				<div class="col-xs-12 collapse" id="DumpKeyHelp">
+				    <div class="well modal-help">
+				    This will be some helpful stuff....
+				    </div>
+				</div>
+            </div>
+      		<!-- Results go here -->
+            <div class="col-xs-12 modalResults" ng-show="dump.result">
+                <pre>Private key info...<br/>IMPORTANT: Treat this as a comprimised key.<br/>Address: {{ dump.val }}</pre>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn ghost-btn-clear" ng-click="clearDump()">Clear</button>
+				<button type="button" class="btn ghost-btn-clear" data-dismiss="modal">Close</button>
+			</div>
+    	</div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

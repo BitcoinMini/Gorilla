@@ -1,0 +1,24 @@
+<div class="modal fade" tabindex="-1" role="dialog" id="powerModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"><img src="img/gorilla_white.png" alt="logo" class="logo-modal"/> Power</h4>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger power-alert" role="alert">
+                    <h2 style="margin-top:5px;"><strong>Warning!</strong></h2>
+                    These buttons should rarely be used. However, if you must restart or shutdown your Mini, they will shutdown bitcoind properly to avoid damage.<br/><br/>
+                    <strong>Shutdown</strong>
+                    If you use the shutdown button, you must unplug the Mini's power and plug it back in to reboot. When you plug it back in you'll most likely need to find the LAN IP address again on your router.<br/><br/>
+                    <strong>Restart</strong>
+                    Restarting will take approximately 2 minutes. Leave your browser open and it will reload the page when done.
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="" ng-click="restart()" class="btn btn-danger pull-left">Restart</a>
+                <a href="" ng-click="shutdown()" class="btn btn-danger">Shutdown</a>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

@@ -19,206 +19,34 @@
 </head>
 <body>
     <div ng-controller="mainController">
-        <!-- Loading div -->
+
+        <!-- Full page loading div -->
         <div id="loaderDiv" ng-show="loader">
             <img src="img/loader_large.gif" height="60px"/>
         </div>
-        <!-- Navigation -->
-        <div id="stats-menu">
-            <ul id="sidebar">
-                <!-- Status --> 
-                <li class="menu-item-connection left">
-                    <div ng-show="!info.loaded">
-                        <h5>
-                            <i class="material-icons orange pull-left">lens</i> Loading <img src="img/loader.gif" height="14px"/>
-                        </h5>
-                    </div>
-                    <div ng-show="info.loaded">
-                        <h5>
-                            <i class="material-icons green pull-left">lens</i>&nbsp;&nbsp;online
-                            <span class="pull-right">Sys uptime&nbsp;&nbsp;{{ info.sysuptime }}</span>
-                        </h5>
-                    </div>
-                <!-- Connection items -->
-                <li class="menu-item left p2p">
-                    <div class="quads info-button">
-                        <a data-toggle="collapse" 
-                           data-target="#mobileStatsDropdown" 
-                           aria-expanded="false" 
-                           aria-controls="collapseExample">
-                           <p><i class="material-icons" style="vertical-align:bottom;">swap_vert</i></p>
-                        </a>
-                    </div>
-                    <div class="quads livesince">
-                        <h5>BTC Uptime</h5><p id="forLoader">{{ info.livesince }}</p>
-                    </div>
-                    <div class="quads peers">
-                        <h5>Peers</h5><p>{{ info.peers }}</p>
-                    </div>
-                    <div class="quads behind">
-                        <h5>Behind</h5><p>{{ info.blocksbehind }}</p>
-                    </div>
-                </li>
-                <!-- Info items -->
-                <li class="menu-item left more ghidden"><p>{{ info.ip }}</p><h5>External IP</h5></li>
-                <li class="menu-item left more ghidden"><p>{{ info.protocolversion }}</p><h5>Protocol Version</h5></li>
-                <li class="menu-item left more ghidden"><p>{{ info.miniblock }}</p><h5>Block</h5></li>
-                <li class="menu-item left more ghidden"><p>{{ info.difficulty }}</p><h5>Difficulty</h5></li>
-                <li class="dvd ghidden"></li>
-                <li class="menu-item left more ghidden"><p>{{ info.txns }}</p><h5>Transactions 24 Hrs</h5></li>
-                <li class="menu-item left more ghidden"><p>{{ info.blockmins }}</p><h5>Avg Mins per Block</h5></li>
-                <li class="menu-item left more ghidden"><p>{{ info.hashrate }}</p><h5>Hash Rate GH</h5></li>  
-                <li class="dvd ghidden"></li>
-                <li class="menu-item left more ghidden">
-                    <p>$ {{ info.index }}</p>
-                    <h5 style="color:#db9100;">Bitcoin Average Price&nbsp;&nbsp;
-                        <a href="http://theindex.io" target="_blank"><i class="material-icons" style="vertical-align:bottom;font-size:12px;">open_in_new</i></a>
-                    </h5>
-                </li>
-            </ul>
-            <!-- This is the mobile dropdown for stats -->
-            <div class="collapse" id="mobileStatsDropdown">
-                <ul>
-                    <li class="menu-item left mobile-stats"><p>{{ info.ip }}</p><h5>External IP</h5></li>
-                    <li class="menu-item left mobile-stats"><p>{{ info.protocolversion }}</p><h5>Protocol Version</h5></li>
-                    <li class="menu-item left mobile-stats"><p>{{ info.miniblock }}</p><h5>Block</h5></li>
-                    <li class="menu-item left mobile-stats"><p>{{ info.difficulty }}</p><h5>Difficulty</h5></li>
-                    <li class="dvd"></li>
-                    <li class="menu-item left mobile-stats"><p>{{ info.txns }}</p><h5>Transactions 24 Hrs</h5></li>
-                    <li class="menu-item left mobile-stats"><p>{{ info.blockmins }}</p><h5>Avg Mins per Block</h5></li>
-                    <li class="menu-item left mobile-stats"><p>{{ info.hashrate }}</p><h5>Hash Rate GH</h5></li>  
-                    <li class="dvd"></li>
-                    <li class="menu-item left mobile-stats">
-                        <p>$ {{ info.index }}</p>
-                        <h5 style="color:#db9100;">Bitcoin Average Price&nbsp;&nbsp;
-                            <a href="http://theindex.io" target="_blank"><i class="material-icons" style="vertical-align:bottom;font-size:12px;">open_in_new</i></a>
-                        </h5>
-                    </li>
-                </ul>
-            </div>
-        </div><!-- /Left-sidebar -->
 
-        <div id="top-bar">
-            <ul id="top-list">
-                <!-- Brand -->
-                <li class="menu-item top pull-left" id="brand">
-                    <a href="#/home"><img src="img/gorilla_orange.png" alt="logo" class="logo"/></a>
-                    <a href="https://github.com/BitcoinMini/Gorilla-UI" target="_blank" id="brand-popup"><img src="img/github.png" id="github" alt="github"></a>
-                </li>
-                <li class="menu-item top pull-left">
-                    
-                </li>
-                <!-- System Control menu -->
-                <li class="menu-item top text-center pull-right" style="font-size:24px;cursor:pointer;">
-                    <!-- use controller -->
-                    <div ng-controller="pageslideController">
-
-                        <a href="" ng-click="toggle()"><i class="material-icons">more_vert</i></a>
-                        <!-- menu content -->
-                        <pageslide ps-open="checked" ps-auto-close="true">
-                            <div class="slider">
-                                <ul>
-                                    <li class="slide-item">
-                                        <a class="slide-close" href="" ng-click="toggle()">
-                                            <i class="material-icons">arrow_forward</i>
-                                        </a>
-                                    </li>
-                                    <li class="slide-item">
-                                        <a href="#/explorer">
-                                            <i class="material-icons orange">web</i>&nbsp;&nbsp;Explorer
-                                        </a>
-                                    </li>
-                                    <li class="slide-item">
-                                        <a href="#" id="open">
-                                            <i class="material-icons orange">code</i>&nbsp;&nbsp;Terminal
-                                        </a>
-                                    </li>
-                                    <li class="slide-item">
-                                    	<a href="#helpModal" data-backdrop="false" data-toggle="modal"><i class="material-icons orange">help_outline</i>&nbsp;&nbsp;HELP</a>
-                                    </li>
-                                    <!--<li class="slide-item">
-                                        <a disabled="disabled" style="pointer-events:none;">
-                                            <i class="material-icons orange">settings</i>&nbsp;&nbsp;Control Panel (coming soon)
-                                        </a>
-                                    </li>-->
-                                    <li class="slide-item">
-                                        <a data-toggle="modal" data-target="#powerModal">
-                                            <i class="material-icons orange">power_settings_new</i>&nbsp;&nbsp;Power
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </pageslide>
-                    </div>
-                </li>
-                
-            </ul><!-- /Top-list -->
-        </div><!-- /Top-nav -->
+        <!-- Vertical Nav -->
+        <div id="stats-menu" ng-include="'partials/nav/vert-nav.html'"></div><!-- /vert-nav -->
+        <!-- Top Nav -->
+        <div id="top-bar" ng-include="'partials/nav/top-bar.html'"></div><!-- /top-nav -->
 
         <!-- Power Shutdown/Restart modal -->
-        <div class="modal fade" tabindex="-1" role="dialog" id="powerModal">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Power</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="alert alert-danger power-alert" role="alert">
-                            <h2 style="margin-top:5px;"><strong>Warning!</strong></h2>
-                            These buttons should rarely be used. However, if you must restart or shutdown your Mini, they will shutdown bitcoind properly to avoid damage.<br/><br/>
-                            <strong>Shutdown</strong>
-                            If you use the shutdown button, you must unplug the Mini's power and plug it back in to reboot. When you plug it back in you'll most likely need to find the LAN IP address again on your router.<br/><br/>
-                            <strong>Restart</strong>
-                            Restarting will take approximately 2 minutes. Leave your browser open and it will reload the page when done.
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <a href="" ng-click="restart()" class="btn btn-danger pull-left">Restart</a>
-                        <a href="" ng-click="shutdown()" class="btn btn-danger">Shutdown</a>
-                    </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
-        <div id="helpModal" class="modal fade dragmod">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                 <h4 class="modal-title">Help</h4>
-
-            </div>
-            <div class="modal-body">
-                <h2>Help</h2>
-                <h3>Terminal</h3>
-				<p>Click the title bar to drag.</p>
-				<p>Double-click title bar to maximize.</p>
-				<p>Click the lower-right corner to resize.</p>
-				<p>Click the tilde to open a new tab. (dots next to tilde)</p>
-				<p>Click the tilde with a modifier (alt/shift/ctrl) or type `exit` to close the window.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
+        <section ng-include="'partials/modals/shutdown.html'"></section><!-- /shutdown modal -->
+        <!-- Help modal -->
+        <section ng-include="'partials/modals/help.html'"></section><!-- /help modal -->
     
-
-        
         <!-- System Process div -->
         <div ng-show="systemProcess" 
              style="position:fixed;left:0;top:0;width:100%;height:100%;z-index:9998;background:rgba(34,34,34,1);padding-top:15%;">
-                <div>
-                    <h1 class="text-center"><img src="img/loader_large.gif" height="60px"/></h1>
-                    <p class="text-center" style="color:white;">{{ systemMessage }}</p>
-                    <p class="text-center" style="color:white;">{{ systemDetails }}</p>
-                </div>
+            <div>
+                <h1 class="text-center"><img src="img/loader_large.gif" height="60px"/></h1>
+                <p class="text-center" style="color:white;">{{ systemMessage }}</p>
+                <p class="text-center" style="color:white;">{{ systemDetails }}</p>
+            </div>
         </div>
     </div><!-- / mainController -->
     
-    <!-- Placeholder for partials -->
+    <!-- Placeholder for pages -->
     <div id="wrapper">        
         <div ui-view></div>
     </div><!-- / wrapper -->

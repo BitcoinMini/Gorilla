@@ -1,0 +1,30 @@
+<div class="modal fade dragmod" id="AddNewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"><img src="img/gorilla_white.png" alt="logo" class="logo-modal"/> &nbsp;Add An Address <img src="img/loader.gif" height="30px" ng-show="modalLoading"/></h4>
+            </div>
+            <div class="modal-body clearfix">
+            	<form ng-submit="newAdd()">
+            		<a class="btn ghost-btn-help" role="button" data-toggle="collapse" href="#NewAddressHelp" aria-expanded="false" aria-controls="NewAddressHelp"><i class="material-icons">help</i></a>
+                    <input type="text" ng-model="modalValues.newAddLabel" placeholder="Address label (optional)" />
+            		<input type="submit" class="btn ghost-btn-clear pull-right" value="Get New Address" />
+            	</form>
+				<div class="col-xs-12 collapse" id="NewAddressHelp">
+				    <div class="well modal-help">
+				        Please include a label for the new address you are creating. You will be able to find that address much more easily in the future. It's recommended to create an address for specific tasks and use an appropriate label. For example, "message signing", "business card" or "donation 1".<br/><br/>Add a label and click the button.
+				    </div>
+				</div>
+            </div>
+      		<!-- Results go here -->
+            <div class="col-xs-12 modalResults" ng-show="new.result">
+                <pre>New address creation successful...<br/>Label: {{ new.acct }}<br/>Address: {{ new.val }}</pre>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn ghost-btn-clear" ng-click="clearNew()">Clear</button>
+				<button type="button" class="btn ghost-btn-clear" data-dismiss="modal">Close</button>
+			</div>
+    	</div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

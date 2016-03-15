@@ -21,7 +21,7 @@ angular.module('guerilla').controller(
          */
         $scope.info = [];  // for the menu information
         // variable for DOM manipulation
-        $scope.loader = false;  // show the loading div
+        $scope.loader = true;  // show the loading div
         $scope.info.loaded = false;  // For showing the ONLINE vs LOADING
         $scope.needsUpdate = false;  // For showing the update button
 
@@ -102,12 +102,13 @@ angular.module('guerilla').controller(
                 
                 // display the ONLINE
                 $scope.info.loaded = true;
+                $scope.loader = false;
                 // On the initial load, delay the loading div from disappearing
-               // if($scope.info.loaded){
-                    //setTimeout(function(){
-                        $scope.loader = false;
-                   // }, 2000);
-                //}
+                // if($scope.info.loaded){
+                //     setTimeout(function(){
+                //         $scope.loader = false;
+                //     }, 2000);
+                // }
             }); // .then()
         } // loader()
 

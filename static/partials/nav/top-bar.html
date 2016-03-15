@@ -1,0 +1,54 @@
+<ul id="top-list">
+    <!-- Brand -->
+    <li class="menu-item top pull-left" id="brand">
+        <a href="/home"><img src="img/gorilla_orange.png" alt="logo" class="logo"/></a>
+        <a href="https://github.com/BitcoinMini/Gorilla-UI" target="_blank" id="brand-popup"><img src="img/github.png" id="github" alt="github"></a>
+    </li>
+    <li class="menu-item top pull-left">
+        
+    </li>
+    <!-- System Control menu -->
+    <li class="menu-item top text-center pull-right" style="font-size:24px;cursor:pointer;">
+        <!-- use controller -->
+        <div ng-controller="pageslideController">
+
+            <a href="" ng-click="toggle()"><i class="material-icons">more_vert</i></a>
+            <!-- menu content -->
+            <pageslide ps-open="checked" ps-auto-close="true">
+                <div class="slider">
+                    <ul>
+                        <li class="slide-item">
+                            <a class="slide-close" href="" ng-click="toggle()">
+                                <i class="material-icons">arrow_forward</i>
+                            </a>
+                        </li>
+                        <li class="slide-item">
+                            <a href="/explorer">
+                                <i class="material-icons orange">web</i>&nbsp;&nbsp;Explorer
+                            </a>
+                        </li>
+                        <li class="slide-item">
+                            <a href="#" id="open">
+                                <i class="material-icons orange">code</i>&nbsp;&nbsp;Terminal
+                            </a>
+                        </li>
+                        <li class="slide-item">
+                        	<a href="#helpModal" data-backdrop="false" data-toggle="modal"><i class="material-icons orange">help_outline</i>&nbsp;&nbsp;HELP</a>
+                        </li>
+                        <!--<li class="slide-item">
+                            <a disabled="disabled" style="pointer-events:none;">
+                                <i class="material-icons orange">settings</i>&nbsp;&nbsp;Control Panel (coming soon)
+                            </a>
+                        </li>-->
+                        <li class="slide-item">
+                            <a data-toggle="modal" data-target="#powerModal">
+                                <i class="material-icons orange">power_settings_new</i>&nbsp;&nbsp;Power
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </pageslide>
+        </div>
+    </li>
+    
+</ul><!-- /Top-list -->
