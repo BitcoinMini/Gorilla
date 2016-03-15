@@ -236,6 +236,15 @@ li {
 pre {
   margin-top: 10px;
 }
+.panel-heading {
+  background-color: transparent!important;
+}
+.help-panel {
+  width: 100%;
+}
+.help-panel .help-item {
+  font-size: 16px;
+}
 @media only screen and (max-width: 480px) {
   .modal {
     left: 1%;
